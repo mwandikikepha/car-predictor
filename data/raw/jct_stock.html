@@ -1,0 +1,1562 @@
+<!DOCTYPE html><html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+	<link rel="icon" href="https://www.japanesecartrade.com/images/favicon.ico" type="image/ico">
+				<link rel="canonical" href="https://www.japanesecartrade.com/stock_list.php">
+    		<script async="" src="https://bat.bing.com/p/insights/s/0.8.59"></script><script async="" src="https://bat.bing.com/p/insights/t/97167808"></script><script src="//bat.bing.com/bat.js" async=""></script><script src="https://www.japanesecartrade.com/js/jquery-3.6.0.min.js"></script>	
+		<script>
+		var master_mmm = 20260513231603;
+		var master_tsmm = 20260513232526;
+		var master_tmmmc = 20260513231950;
+	</script>
+    <style>
+    html * {margin: 0;padding: 0;box-sizing: border-box;}
+	/* body{font-family: roboto, sans-serif; color: #333;    background-color: #fff;} */
+	html{-webkit-tap-highlight-color:transparent}
+	body{font-family:roboto, sans-serif;font-family: 14px; line-height:1.42857143;color:#333;background-color:#fff;overflow-y: scroll;}
+	.pointer { cursor: pointer }
+	.white_color { color: #fff }
+	.red_color { color: red }
+	.gray_color { color: #999 }
+	.blue_color { color: #039 }
+	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{line-height: 1.1;}
+	.search-sl {
+		background: url(https://cdn.japanesecartrade.com/jctimages/sprite-list-desktop_new_27_022025.png) 0 0 no-repeat;
+		display: inline-block;
+		position: relative
+	}
+	.search-sl-toparrow{
+		background-position: -312px -22px;
+		width: 11px;
+		height: 16px;
+		top: 3px;
+	}
+	/* ======================== header css start =============== */
+	.top_sprit{border-bottom: 1px solid #ccc;padding:2px 0 2px;}
+	ul{list-style-type: none;padding: 0; margin: 0;}
+	a{text-decoration: none;}
+	.max_width{margin: auto;padding: 0 15px;}
+	.top_menu{display: flex;justify-content: space-between;flex-wrap: wrap;align-items: center;}
+	.top_menu ul{display:flex;align-items: center;}
+	.top_menu ul li{font-size: 12px;color: #666; height: 25px; display: flex; align-items: center;    padding-right: 6px;    font-weight: 400;    padding-top: 4px;}
+	.rightTopsecmenu li{padding-right: 15px !important;}
+	.leftTopsecmenu li a{color: #23527c !important;}
+	.leftTopsecmenu li a:hover{color: #c00 !important;}
+	.top_menu ul li select{border: 1px solid #336eff; height: 22px; width: 105px; padding: 0;margin: 0 5px 0 7px !important; font-size: 12px; border-radius: 3px; position: relative; bottom: 2px;}
+	.top_menu ul li:last-child, .rightTopsecmenu li:last-child{padding-right: 0px !important;}
+	.top_menu ul li a{color: #666;text-decoration: none; display: flex; align-items: center;}
+	.top_menu ul li a:hover{color: #336EFF !important;}
+	.cart_count{position:absolute; top: -6px;left:14px}
+	.icon_left_p{padding-left: 3px; display: flex;align-items: center;}
+	.flagLanguage{display: flex;align-items: center;font-weight: 400;}
+	.top_link.cart{display: flex; align-items: center;position: relative;}
+	/* .top_menu_li a{width: 70px;} */
+	.dropdownmenuTopHeader{position:relative}
+	.dropdownmenuTopHeader>ul{position:absolute;top:60px;left:0;background:#fff;width:200px;box-shadow:0 5px 5px #ccc;visibility:hidden;opacity:0;z-index:10000}
+	.dropdownmenuTopHeader:hover>ul{visibility:visible;opacity:1;}
+	.dropdownmenuTopHeader>ul>li.dropdownmenutwo,.dropdownmenuTopHeader>ul>li>a,.dropdownmenuTopHeader>ul>li>ul>li>a{padding:10px 15px;color:#333;font-size: 15px;display:block;border-bottom:1px solid #ccc;-webkit-transition:all .5s linear;-moz-transition:all .5s linear;-o-transition:all .5s linear;-ms-transition:all .5s linear;transition:all .5s linear}
+	.dropdownmenuTopHeader>ul>li:hover,.dropdownmenuTopHeader>ul>li>a:hover,.dropdownmenuTopHeader>ul>li>ul>li>a:hover{background:#e7e7e7;color:#333}
+	.dropdownmenuTopHeader>ul>li>ul{position:absolute;left:250px;width:200px;background:#fff;top:0;visibility:hidden;opacity:0}
+	.dropdownmenuTopHeader>ul>li:hover>ul{visibility:visible;opacity:1;left:200px}
+
+
+
+	/* =================== mid menu ===================== */
+	.mid_menu{display: flex;align-items: center;padding: 0px 15px;flex-wrap: wrap;}
+	.mid_menu .mid_menu_left{width: 22%;}
+	.mid_menu .mid_menu_left img{vertical-align: middle;}
+	.mid_menu .mid_menu_mid{width: 56%;}
+	.mid_menu .mid_menu_mid .nav_ul{display: flex; justify-content:center;/*height: 71px;*/}
+	.mid_menu .mid_menu_mid .nav_ul .nav_ul_li{/*padding: 0px 10px 0 10px;*/ }
+	.mid_menu .mid_menu_mid .nav_ul .nav_ul_li .nav_ul_li_link{color: #333;position: relative;height: 100%;display: block;padding: 20px 6px;font-size: 18px; font-weight: 400;overflow:hidden}
+	.mid_menu .mid_menu_mid .nav_ul .nav_ul_li .nav_ul_li_link::after{border-bottom:2px solid #333;content:"";position:absolute;width:60%;bottom: -5px;left:22%;-webkit-transition:all 1s;transition:all 1s;opacity:0; overflow: hidden;}
+	.mid_menu .mid_menu_mid .nav_ul .nav_ul_li .nav_ul_li_link:hover::after{bottom: 10px;opacity:1;}
+	.mid_menu .mid_menu_right{width: 22%;}
+	.mid_menu .mid_menu_right ul{position: relative;display: flex;justify-content: end;align-items: center; top: 0px;}
+	.mid_menu .mid_menu_right ul li{margin-right:10px;}
+	.mid_menu .mid_menu_right ul li a{display: block;height: 60px;}
+	.mid_menu .mid_menu_right ul li:last-child{margin-right:0px;}
+
+	.mid_menu .mid_menu_mid .nav_ul .nav_ul_li .nav_ul_li_link:focus, .mid_menu .mid_menu_mid .nav_ul .nav_ul_li .nav_ul_li_link:hover, .mid_menu .mid_menu_mid .nav_ul .nav_ul_li strong:hover { color: #333; background: #e7e7e7; }
+
+	#google_translate_element{height:23px;overflow:hidden;width:100px !important;display: flex;}
+	.goog-te-gadget .goog-te-combo{margin:0!important;font-size:12px;width:110px !important;height:23px;border:1px solid #ccc;border-radius:2px;padding:0 3px;bottom: 0;}
+	.country-combo{border:1px solid #336EFF;height:22px;width:105px;padding-left:0;font-size:12px;border-radius:3px;margin-left:10px;position:relative;bottom:2px}
+	/* ======================== header css end =============== */
+
+	/* ======================== banner form css start =============== */
+			.bannerJctHomePage{background:url(https://cdn.japanesecartrade.com/jctimages/search-bk-2022-new.jpg); background-position: top center;padding:10px 0px 10px;height: 63px;}
+		.bannerJctHomePage .max_width .bannerHomeHeading{color: #fff;text-align: center;text-transform: uppercase;font-weight: 300;font-size: 34px;margin: 14px 0 4px !important;}
+	/* .bannerJctHomePage .max_width h2{font-size: 34px;font-weight: 300;color: #fff;text-align: center;margin-bottom: 5px;margin-top: 0px;} */
+	.bannerJctHomePage .max_width form{margin-bottom: 0px;}
+	/* .bannerJctHomePage .max_width form a{ text-align:center;line-height: 20px; background-color: #d9383d; font-weight: 500; font-size: 16px; color: #fff; padding: 7px 9px 8px; height:35px; transition: .5s; position: relative; margin: 0 2px 0 4px;width: 8%;} */
+	.bannerJctHomePage .max_width form .filter_btn{ text-align:center;background-color: #fff; font-weight: 500; font-size: 16px; color: #000; padding:7px 9px 8px; transition: .5s; position: relative; margin: 0 2px;line-height: 24px;height:35px;width: 10%;}
+
+	/* ====================  form css ========================= */
+	/* .select_form_1{width: 14% !important;}
+	.select_form_2{width: 14% !important;}
+	.select_form_3{width: 12% !important;}
+	.select_form_4{width: 12% !important;}
+	.select_form_5{width: 29% !important;} */
+
+	.form-control{display:block;width:100%;height:30px;padding:2px 6px;font-size:14px;line-height:1.42857143;color:#555;background-color:#fff;border:1px solid #ccc;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}
+	select.form-control{padding-left:2px;padding-right:2px}
+	.form-control:focus,.active_class{border-color:#66afe9;outline:0;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);background-color:#f8f8f8}
+	.form-control::-moz-placeholder{color:#999;opacity:1}
+	.form-control:-ms-input-placeholder{color:#999}
+	.form-control::-webkit-input-placeholder{color:#999}
+	.form-control::-ms-expand{background-color:transparent;border:0}
+	.form-control[disabled],.form-control[readonly],fieldset[disabled] .form-control{background-color:#eee;opacity:1}
+	.form-control[disabled],fieldset[disabled] .form-control{cursor:not-allowed}
+	.sort-control{display:block;width:100%;height: 43px !important;padding:0 2px;font-size:12px;line-height:1.42857143;color:#555;background-color:#fff;border:1px solid #ccc}
+	select.sort-control{padding:0}
+	.sort-control::placeholder{color:#ccc}
+	textarea.form-control{height:auto}
+	input[type=search]{-webkit-appearance:none}
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	input[type=date].form-control,input[type=time].form-control,input[type=datetime-local].form-control,input[type=month].form-control{line-height:34px}
+	input[type=date].input-sm,input[type=time].input-sm,input[type=datetime-local].input-sm,input[type=month].input-sm,.input-group-sm input[type=date],.input-group-sm input[type=time],.input-group-sm input[type=datetime-local],.input-group-sm input[type=month]{line-height:30px}
+	input[type=date].input-lg,input[type=time].input-lg,input[type=datetime-local].input-lg,input[type=month].input-lg,.input-group-lg input[type=date],.input-group-lg input[type=time],.input-group-lg input[type=datetime-local],.input-group-lg input[type=month]{line-height:46px}
+	}
+	/* ======================== banner form css end =============== */
+	/* ======================== caution css start =============== */
+	.caution{margin-bottom: 10px; background: #e5e5e5; color: #990000; padding: 7px 0 3px; font-size: 14px; box-shadow: 0 1px 6px #ccc;height: 30px;}
+	.caution_text{font-size:14px;color:#990000;margin-bottom:0px;}
+	/* ======================== caution css end =============== */
+
+	/* ============ sprite image ==================  */
+	.jct_top{background: url(https://www.japanesecartrade.com/topimage/sprite_top_menu_dekstop_23-01-2025.png);display:inline-block;position:relative;}
+	.jct_top_time{background-position: -4px -5px;width:18px; height:18px;top: -1px;}
+	.jct_top_flag{background-position: -29px -5px;width:19px; height:18px;top: -1px;}
+	.jct_top_blog{background-position: -117px -5px;width:19px; height:18px;top: -1px;}
+	.jct_top_cart{background-position: -142px -5px;width:31px; height:18px;top:-1px;}
+	.jct_top_contact{background-position: -204px -9px;width:15px; height:13px;}
+	.jct_top_sitemap{background-position: -52px -7px;width:16px; height:14px;}
+	.jct_top_login{background-position: -74px -7px;width:14px; height:14px;}
+
+	.jct_top_jumvea{background-position: -2px -35px;width:74px; height:53px;top: 6px;}
+	.jct_top_safe_trade{background-position: -82px -30px;width:52px; height:63px;}
+	.jct_top_slaaj{background-position: -138px -34px;width:107px; height:60px;top: 2px;}
+	.jct_top_search { position: relative; background-position: -95px -6px; width: 16px; height: 16px; top: 2px; }
+	.jct_top_filter { background-position: -180px -7px; width: 17px;height: 15px; top: 0px; }
+	.jct_top_filter_1 { background-position: -245px -6px; width: 17px; height: 16px; top: 0px; }
+	.top_search_icon { position: absolute;top: 14px;z-index: 999;right: 66.4%; }
+
+		
+	/* .pull-right {
+		float: right!important
+	}
+
+	.pull-left {
+		float: left!important
+	} */
+	/* ======================== Dealer top header css ====================== */
+
+
+
+	@media (min-width: 576px) {
+		.max_width {
+			max-width: 540px;
+		}
+	}
+	@media (min-width: 768px) {
+		.max_width{
+			max-width: 720px;
+		}
+	}
+	@media (min-width: 992px) {
+		.max_width {
+			max-width: 960px;
+		}
+	}
+	@media (min-width: 1200px) {
+		.max_width {
+			max-width:1230px;
+		}
+	}
+	/* @media (min-width: 1400px) {
+	.max_width {
+		max-width: 1360px;
+	}
+	} */
+	.closetopSearchInputform{ margin:0px 0 0 0 !important; width:41px; top: 1px !important; height: auto !important; }
+    </style>
+	<!-- Google tag (gtag.js) --> 
+	<!--<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16970002407"></script> 
+	<script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-16970002407'); </script>
+	
+	<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"97167808", enableAutoSpaTracking: true};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>-->
+	
+	<!-- Meta Pixel Code -->
+	<!--<script>
+	!function(f,b,e,v,n,t,s)
+	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+	n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];
+	s.parentNode.insertBefore(t,s)}(window, document,'script',
+	'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '1186357809646616');
+	fbq('track', 'PageView');
+	</script>
+	<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1186357809646616&ev=PageView&noscript=1"/></noscript>-->
+	<!-- End Meta Pixel Code -->
+	
+	<script>     (function(w,d,t,r,u)     {         var f,n,i;         w[u]=w[u]||[],f=function()         {             var o={ti:"97167808", enableAutoSpaTracking: true};             o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")         },         n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function()         {             var s=this.readyState;             s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)         },         i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)     })     (window,document,"script","//bat.bing.com/bat.js","uetq"); </script>
+<script src="https://bat.bing.com/p/action/97167808.js" type="text/javascript" async="" data-ueto="ueto_fc993b7fa8"></script><link rel="preconnect" href="https://cdn.japanesecartrade.com"><link rel="dns-prefetch" href="https://cdn.japanesecartrade.com"><link rel="preload" href="https://www.japanesecartrade.com/fonts/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2" as="font" crossorigin="anonymous"><link rel="preload" href="https://www.japanesecartrade.com/fonts/CWB0XYA8bzo0kSThX0UTuA.woff2" as="font" crossorigin="anonymous"><title>Japanese Used Cars Exporters, Japan Used Cars, Japanese Car Importers...</title><meta content="text/html; charset=utf-8" http-equiv="Content-Type"><meta name="keywords" content="japanese used cars, japan used car exporters, japanese car importers, used cars from japan, japan used car exports, japanese car trade, japanesecartrade, used cars sales in japan, japan, nippon, japan used mini trucks, japanese vehicle importers, japan used vehicles, salvage cars, damaged cars from japan, japan used cars auction agents, japan used SUV, sedan, truck, buses, parts, equipments,..."><meta name="description" content="JapaneseCarTrade.com is a used car portal. Importers and buyers can find here quality used cars, trucks and equipment from hundreds of exporters in Japan"><meta property="og:image" content="https://cdn.japanesecartrade.com/jctimages/logo-fb.jpg"><meta property="og:image:alt" content="Japanese Used Cars Portal"><meta property="og:title" content="Japanese Used Cars Exporters, Japan Used Cars, Japanese Car Importers..."><meta property="og:description" content="JapaneseCarTrade.com is a used car portal. Importers and buyers can find here quality used cars, trucks and equipment from hundreds of exporters in Japan"><meta property="og:type" content="website"><meta property="og:url" content="https://www.japanesecartrade.com/stock_list.php?year_from=2018"><meta content="IE=edge" http-equiv="X-UA-Compatible"><meta content="max-age=31536000" http-equiv="Cache-Control"><meta name="robots" content="INDEX,FOLLOW"><meta name="robots" content="NOODP"><meta name="google-site-verification" content="HPV6LRzHSTRpmuWuMwYHfF1tEHF6SvvTfhf0INJ2zLk"><meta name="msvalidate.01" content="F0C99C6E77551F64CCD5F6EF5B7CE2FD"></head>
+<body>     <header>
+		<div class="top_sprit topDealerHeader">
+            <div class="max_width">
+                <div class="top_menu">
+					                    <ul class="leftTopsecmenu">
+                        <li class="top_menu_li">
+							<a href="https://www.japanesecartrade.com/stock_list.php">Japanese Cars Stock</a>&nbsp;
+							<a href="https://www.japanesecartrade.com/stock_list.php" id="ttlRecords" style="width: 43px;" class="font_bold">234,501</a> 
+							<strong style="padding-left:8px;">|</strong> 
+						</li>
+                        <li class="top_menu_li" style="padding-right:3px;">
+							<a href="https://www.japanesecartrade.com/stock_list.php?last_days=1">Today's Arrival  </a>&nbsp;
+							<a href="https://www.japanesecartrade.com/stock_list.php?last_days=1" id="ttlTodayRecords" style="width: 30px;" class="font_bold">3,226</a>
+							<strong style="padding-left:6px;">|</strong>
+						</li>
+                        <li class="top_menu_time" style="min-width: 154px;">
+							<span class="icon_left_p">
+								<span class="jct_top jct_top_time"></span>&nbsp;Japan Time :&nbsp;<span class="timestr" style="min-width: 46px"></span> 
+							</span> 
+						</li>
+                        <li style="font-size: 12px;min-width: 100px;">
+							<select id="country" name="country" class="country-combo" onfocus="LoadTopCountryCombo();" onchange="___setImportRegulation();"><option value="">Select Country</option>
+							</select>
+						</li>
+                        <li style="min-width: 100px;">
+							<div id="google_translate_element">
+								<a href="javascript:void(0);" id="gLg" onclick="___LoadGoogleLanguageBox();">
+                                <strong class="flagLanguage"><span class="jct_top jct_top_flag tooltip-bottom" aria-label="Language" role="tooltip"></span>&nbsp;English</strong></a>
+							</div>
+						</li>
+                    </ul>
+                    <ul class="rightTopsecmenu">
+                        <li>
+							<a href="https://blog.japanesecartrade.com/blog/" rel="nofollow"><span class="jct_top jct_top_blog"></span>&nbsp;Blog</a>
+						</li>
+											
+                        <li>
+							<strong class="top_link cart pointer" onclick="___MyCartStockOnTop();">
+								<span class="jct_top jct_top_cart tooltip-bottom" aria-label="Favorite Vehicles" role="tooltip">
+								<strong class="cart_count">
+									0								</strong>
+								</span>&nbsp; Cart
+							</strong>	
+						</li>
+                        <li>
+							<a href="https://www.japanesecartrade.com/recentviewed/" class="top_link red_color">
+								<label class="red_color pointer">Recent
+                                Viewed
+								</label>
+							</a>
+						</li>
+                        <li>
+							<a href="https://www.japanesecartrade.com/send.php" style="color:#666;">
+								<span class="jct_top jct_top_contact"></span> 
+								<span class="icon_left_p">Contact</span>
+							</a>
+						</li> 
+						
+													<li>
+								<a href="https://www.japanesecartrade.com/sitemap.php" class="top_link">
+									<span class="jct_top jct_top_sitemap"></span>Sitemap
+								</a>
+							</li>
+												
+												<li style="padding-right: 0px;">
+							<a href="https://www.japanesecartrade.com/login.php" class="top_link">
+							<span class="jct_top jct_top_login"></span>&nbsp;Login</a>/
+							<a href="https://www.japanesecartrade.com/registration.php" class="top_link">Signup</a>
+						</li>
+											</ul>
+					<div class="hover_favorite" style="display:none;right: 15%;">
+						<div class="fav_head">You have <strong class="fav_count_pos" id="popup_stk_pos">
+                            0                        </strong> vehicles in your cart <span id="fav_close" onclick="fav_close();">X Close</span>
+						</div>
+						
+						<div class="fisrt_fav"></div>
+					
+													<div class="second_fav">
+								<div class="margin_bottom_10">These vehicles are saved temporary, Please <a href="https://www.japanesecartrade.com/login.php">login</a> to save permanently.</div>
+								<div class="text-center"><a href="https://www.japanesecartrade.com/login.php" class="btn btn-default">Login Here</a></div>
+							</div>
+												
+						<div class="clr"></div>
+					</div>
+					
+									
+                </div>
+            </div>
+        </div>
+
+        <div class="mid_menu max_width">
+             <div class="mid_menu_left">
+									<a href="https://www.japanesecartrade.com"><img src="https://cdn.japanesecartrade.com/jctimages/logo.png" alt="JapaneseCarTrade.com" width="201" height="49" class="img-responsive" style=""></a>
+				            </div>
+			          
+			
+            <div class="mid_menu_mid">
+				
+				<div class="">
+					<nav class="navbar navbar-default">
+						<ul class="nav_ul">                        
+														
+							<li class="nav_ul_li active"><a class="nav_ul_li_link" href="https://www.japanesecartrade.com/stock_list.php" rel="nofollow">Stock List</a></li>
+							
+							<li class="nav_ul_li "><a class="nav_ul_li_link" href="https://www.japanesecartrade.com/japan-auto-auction.php" rel="nofollow">Auction</a></li>	
+							
+									
+							<li class="nav_ul_li "><a class="nav_ul_li_link" href="https://www.japanesecartrade.com/japan_car_exporters.php" rel="nofollow">Dealers</a></li>		
+							
+							<li class="nav_ul_li dropdownmenuTopHeader "><a class="nav_ul_li_link" href="https://www.japanesecartrade.com/how_to_buy.php" rel="nofollow">How to Buy</a>
+								<ul>
+									<li><a rel="nofollow" href="https://www.japanesecartrade.com/how_to_buy.php">How to Buy from Stock</a></li>
+									<li><a rel="nofollow" href="https://www.japanesecartrade.com/japan-auto-auction.php">How to Buy from Auction</a></li>
+									<li><a rel="nofollow" href="https://www.japanesecartrade.com/parts-enquiry.php">How to Buy Auto Parts</a></li>
+									<li><a href="https://blog.japanesecartrade.com/import-regulations/" rel="nofollow">Import Regulations</a></li>
+									<li><a rel="nofollow" href="https://www.japanesecartrade.com/about-us.php">About JCT</a></li>
+																		<li><a rel="nofollow" href="https://www.japanesecartrade.com/shipping_schedule.php">Shipping Schedule</a></li>
+								</ul>
+							</li>
+					
+							<li class="nav_ul_li "><a class="nav_ul_li_link" href="https://www.japanesecartrade.com/help_support.php" rel="nofollow">Help/FAQ</a></li>
+							
+												
+							<li class="nav_ul_li dropdownmenuTopHeader "><a class="nav_ul_li_link" href="https://www.japanesecartrade.com/enquiry.php" rel="nofollow">Inquiry</a>
+								<ul>
+									<li><a rel="nofollow" href="https://www.japanesecartrade.com/enquiry.php">Vehicle Inquiry</a></li>
+									<li><a rel="nofollow" href="https://www.japanesecartrade.com/parts-enquiry.php">Spare Parts Inquiry</a></li>
+									<li><a rel="nofollow" href="https://www.japanesecartrade.com/japan-auto-auction.php">Auto Auction Inquiry</a></li>
+									<li><a rel="nofollow" href="https://www.japanesecartrade.com/left-hand-drive.php">Left Hand Cars Inquiry</a></li>
+								</ul>
+							</li>
+							
+							<li class="nav_ul_li "><a class="nav_ul_li_link" href="https://www.japanesecartrade.com/testimonials.php" rel="nofollow">Testimonials</a></li>                     
+						</ul>
+					</nav>
+				</div>
+				            </div>
+            <div class="mid_menu_right">
+								<div class="">
+					<ul class="">
+						<li><a href="https://blog.japanesecartrade.com/369-jumvea/" rel="nofollow" title="Jumvea"><span class="jct_top jct_top_jumvea"></span></a></li>
+						<li><a href="https://blog.japanesecartrade.com/252-jumvea-safe-trade/" rel="nofollow" title="Safe Trade"><span class="jct_top jct_top_safe_trade"></span></a></li>
+						<li><a href="https://blog.japanesecartrade.com/370-slaeaj/" rel="nofollow" title="Slaaj"><span class="jct_top jct_top_slaaj"></span></a></li>
+					</ul>
+				</div>
+				
+				            </div>
+        </div>
+		
+	
+    <div class="bannerJctHomePage">
+        <div class="max_width">
+			<script src="https://cdn.japanesecartrade.com/jctjs/detail_20260513231519.js"></script>
+<script>
+	var accs=[]; 
+	var dealerName = '';
+	var IsDealerTemp = '2';
+	var stockCountry = '';
+</script><script>
+</script>
+<script type="text/javascript">
+    var mfg_from 		= '';
+	var mfg_to 			= '';
+	var month_from 		= '';
+	var month_to 		= '';
+	var seat_capacity 	= '';
+	var mileage_from 	= '';	
+	var mileage_to 		= '';
+	var cc_from 		= '';
+	var cc_to 			= '';
+	var price_from 		= '';
+	var price_to 		= '';	
+	var makeId 			= '';
+	var makerId 		= '';
+	var typeId 			= '';
+	var subTypeId 		= '';
+
+	var getPageNo 		= "";	
+	var mksrId 			= '';
+	var SA 				= '';	
+	var model_code 		= '';
+	var subTypeVal 		= '';
+	var fuel_id 		= '';
+	var color_id 		= '';
+	var transmission_id	= '';
+
+	$('#fuel_id').val('');
+	$('#transmission_id').val('');
+	$('#color_id').val('');
+	
+	var wheeldrive 			    = '';
+	var steering				= '';
+	var bargaindesktop 			= '';
+	var accidentaldesktop 		= '';
+	var videodesktop 			= '';
+	var is_safe_tradedesktop 	= '';
+	var modelcodedesktop        = '';
+	
+	</script>
+
+<!-- onfocus="showsearchsuggestiondesktop(this)" onkeyup="searchSuggestionsdesktop(this)" onblur="removesuggestiondesktop(this)" autocomplete="off" -->
+<link href="https://www.japanesecartrade.com/commonheadcss/desktop/topdesktopheadsearch_JAN_16_2026.css" rel="stylesheet" type="text/css" media="all">
+<div>
+	<form action="https://www.japanesecartrade.com/stock_list.php" method="get" name="advanceSearchForm" id="advanceSearchForm" onsubmit="return ___checkStockSearchFormAdvanceDesktop();">
+		<div class="search_form_topBanner">
+			<div class="select_fleid">
+				<div class="desktopsearchsuggestion">
+					<input title="Search for Make, Model, Chassis, Year, Fuel, Transmission etc" type="text" name="search_keyword" id="search_keyword" class=" sort-control  input_form_validation filter_feild make_active" value="" placeholder="JCT Ref ID, Stock No., Chassis No., or Any Keywords" style="padding: 21px 20px 20px;border-radius:4px;" onfocus="showsearchsuggestiondesktop(this)" onkeyup="ShowSeachResetIcon(this);searchSuggestionsdesktop(this)" onblur="removesuggestiondesktop(this)" autocomplete="off" maxlength="50">
+					
+					<img src="https://www.japanesecartrade.com/topimage/closeIcon.png" class="closetopSearchInputform" alt="CloseIcon" onclick="resetsearchkeyword(this)" style="display:none;">
+				
+					<div class="suggestion-data" style="display:none"></div>
+				</div>
+			</div>
+
+			<div class="select_fleid">
+				<!--<div class="position_relatve">
+					<span class="jct_top jct_top_search top_search_icon"></span>
+					<input value="Search" id="searchBtnStockDesktopForm" type="submit" class="search_submit_btn"/>
+				</div>-->
+				<div class="position_relatve search_submit_btn" onclick="TopSearchDesktopform(this)">
+					<div class="top_search_btn_normal">
+						<span class="jct_top jct_top_search top_search_icon"></span>
+						Search
+					</div>
+					 <!-- Loading state -->
+					<div class="top_search_btn_loading" style="display: none;">
+						<div class="top_search_dots">
+							<span></span><span></span><span></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="select_fleid">
+				<div class="open_make showSingle last_open_make" target="5" onclick="LoadDesktopAdvanceFormNew('2','','','','')">
+					<strong class="jct_top jct_top_filter"></strong>&nbsp; More Filter
+					
+					<div id="search_deskcount" style="display: none;"></div>
+				</div>
+				<div class="targetDiv more_filter" id="desktopsearchadvance" style="display:none;">
+					<div class="filterTabBody more_filter_box" id="ShowLoading">	
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="freightData"></div>
+<script type="text/javascript">    
+	$(document).ready(function() {
+			
+			FetchTotalInputCountAfterSearch();//This function calling for fetch total count in stocklist page not other pages.
+			
+	});
+	
+	var stocklistsearchpage = '1';
+</script>
+<!-- Change the Name In recommended.php file also -->
+	<script src="https://cdn.japanesecartrade.com/jctjs/topsearchdesktop_MAR_18_2025_n4.js?202106254812452154657"></script>
+        </div>
+    </div>
+    </header>  
+
+	
+	
+			
+		
+			<div class="caution">
+							<div class="max_width">
+					<strong>CAUTION:</strong> If you are getting any offer from <a href="https://www.japanesecartrade.com/beware-avoid-fraud.php" target="_blank">"Non-JCT Members"</a> from your inquiries on this site, please <a href="https://www.japanesecartrade.com/send.php">contact us</a>. Kindly make sure you are buying from a trusted dealer. <a href="https://blog.japanesecartrade.com/33-safety-tips-to-avoid-fraud-and-scams/" rel="nofollow">Read More....</a></div>
+					</div>
+				<link href="https://www.japanesecartrade.com/css/stock_list/stocklist_desk_9.css" rel="stylesheet" type="text/css" media="all">
+		<script>
+    var IPCountry="";        
+    var ASSETURL = "https://cdn.japanesecartrade.com";
+</script>
+			<!--<script src="https://www.japanesecartrade.com/js/jquery-3.6.0.min.js"></script>	-->
+	<div style="margin:20px;"></div>	<script>
+		//___LoadCountries();
+		var siteLink = 'https://www.japanesecartrade.com/';
+		var ajaxLinkDetail = 'https://www.japanesecartrade.com/action/actiondetail.php';
+		var ajaxLink = 'https://www.japanesecartrade.com/action/action.php';
+		var ajaxLinkN = 'https://www.japanesecartrade.com/action/load_action.php';
+		var LoadImg = 'https://assets.japanesecartrade.com/images/load_process.gif';
+		var ListView = "";
+		var imgLink = 'https://cdn.japanesecartrade.com/jct';
+		var limit = 10;
+		var MobView = "no";
+		</script>	
+	 <div class="container">		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<ul class="navigation">
+					<li class="hidden-xs"><a href="https://www.japanesecartrade.com">Home</a></li>
+					
+					<li class="makenavshow"><a href="https://www.japanesecartrade.com/stock_list.php">Stock List</a></li>
+					
+				</ul>
+			</div>
+		</div>
+		<script>
+		setTimeout(function () {
+			if(typeof SA != 'undefined' && SA!='' && SA=='make'){
+				if(typeof makeId != 'undefined' && makeId!=''){
+					var makeNavText = '';
+					
+					var makeNav = $("#ByMakes").find('.active').text();
+						makeNav = makeNav.split(" [");
+						makeText = makeNav[0];
+						makeNav = makeNav[0].toLowerCase();
+						makeNav = makeNav.replace(/ /gi, "+");
+					
+					var MakeUrl = siteLink + "make/japanese-" + makeNav + "-used-vehicles-" + makeId +".html";
+					makeNavText += '<li><a href="'+MakeUrl+'">'+makeText+'</a></li>';
+					
+					if(typeof makerId != 'undefined' && makerId!=''){
+						var makerNav = $("#ByModels").find('.active').text();
+							makerNav = makerNav.split(" [");
+							makerText = makerNav[0];
+							makerNav = makerNav[0].toLowerCase();
+							makerNav = makerNav.replace(/ /gi, "+");	
+				
+						var MakerUrl = siteLink + "make-model/" + makeNav + "-"+makeId+"-"+makerNav+"-"+makerId +".html";
+						makeNavText += '<li><a href="'+MakerUrl+'">'+makerText+'</a></li>';
+					}
+				
+					if(typeof modelcodedesktop != 'undefined' && modelcodedesktop!=''){
+						var modelcodeNav = modelcodedesktop.replace(/ /gi, "+");
+						var modelcodeNavText = modelcodedesktop.replace(/ /gi, "-");
+						
+						var ModelcodeUrl = siteLink + "make-model/" + makeNav + "-"+makeId+"-"+makerNav+"-"+makerId+"-"+modelcodeNav+".html";
+						makeNavText += '<li><a href="'+ModelcodeUrl+'">'+modelcodeNavText+'</a></li>';
+					}
+					
+					if(typeof makerId != 'undefined' && makerId!='' && typeof mfg_from != 'undefined' && mfg_from!=''){
+						if(typeof modelcodedesktop != 'undefined' && modelcodedesktop!=''){
+							modelcodeNav = modelcodeNav.replace(/-/gi, "+");
+							var YearUrl = siteLink + "used-" + makeNav + "-"+makerNav+"-"+modelcodeNav+"-"+mfg_from;
+						}else{
+							var YearUrl = siteLink + "used-" + makeNav + "-"+makerNav+"-"+mfg_from;
+						}
+						makeNavText += '<li><a href="'+YearUrl+'">'+mfg_from+'</a></li>';
+					}
+					
+					$('.makenavshow').after(makeNavText);
+				}
+			}else if(typeof SA != 'undefined' && SA!='' && SA=='type'){
+				if(typeof typeId != 'undefined' && typeId!=''){
+					var typeNavText = '';
+					
+					var typeNav = $("#ByBodyType").find('.active').text();
+						typeNav = typeNav.split(" [");
+						typeText = typeNav[0];
+						typeNav = typeNav[0].toLowerCase();
+						typeNav = typeNav.replace(/ /gi, "+");
+					
+					var TypeUrl = siteLink + "type/"+typeNav +"-"+typeId+".html";
+					typeNavText += '<li><a href="'+TypeUrl+'">'+typeText+'</a></li>';
+				
+					if(typeof subTypeId != 'undefined' && subTypeId!=''){
+						var subtypeNav = $("#BySubTypes").find('.active').text();
+							subtypeNav = subtypeNav.split(" [");
+							subtypeText = subtypeNav[0];
+							subtypeNav = subtypeNav[0].toLowerCase();
+							subtypeNav = subtypeNav.replace(/ /gi, "+");
+						
+						var SubTypeUrl = siteLink + "body-type/"+subtypeNav+"-"+subTypeId +".html";
+						$('#subtypenavigation').html('<a href="'+SubTypeUrl+'">'+subtypeText+'</a>');
+						
+						typeNavText += '<li><a href="'+SubTypeUrl+'">'+subtypeText+'</a></li>';
+					}
+				
+					if(typeof makeId != 'undefined' && makeId!=''){
+						var makeNav = $("#ByMakes").find('.active').text();
+							makeNav = makeNav.split(" [");
+							makeText = makeNav[0];
+							makeNav = makeNav[0].toLowerCase();
+							makeNav = makeNav.replace(/ /gi, "+");
+						if(typeof subTypeId != 'undefined' && subTypeId!=''){
+							var MakeUrl = siteLink + "bodytype-make/"+subtypeNav+"-"+subTypeId+"-"+makeNav+"-"+makeId +".html";
+						}else{
+							var MakeUrl = siteLink + "type-make/"+typeNav+"-"+typeId+"-"+makeNav+"-"+makeId +".html";
+						}							
+						$('#subtypemakenavigation').html('<a href="'+MakeUrl+'">'+makeText+'</a>');
+						
+						typeNavText += '<li><a href="'+MakeUrl+'">'+makeText+'</a></li>';
+					}
+					
+					if(typeof makerId != 'undefined' && makerId!=''){
+						var makerNav = $("#ByModels").find('.active').text();
+							makerNav = makerNav.split(" [");
+							makerText = makerNav[0];
+							makerNav = makerNav[0].toLowerCase();
+							makerNav = makerNav.replace(/ /gi, "+");	
+						
+						
+						if(typeof subTypeId != 'undefined' && subTypeId!=''){
+							var MakerUrl = siteLink + "model-bodytype/" + makerNav + "-"+makerId+"-"+subtypeNav+"-"+subTypeId +".html";
+						}else{
+							var MakerUrl = siteLink + "model-type/"+makerNav+"-"+makerId+"-"+typeNav+"-"+typeId +".html";
+						}
+						typeNavText += '<li><a href="'+MakerUrl+'">'+makerText+'</a></li>';
+					}
+				
+					if(typeof modelcodedesktop != 'undefined' && modelcodedesktop!=''){
+						var modelcodeNav = modelcodedesktop.replace(/ /gi, "+");
+						var modelcodeNavText = modelcodedesktop.replace(/ /gi, "-");
+						
+						if(typeof subTypeId != 'undefined' && subTypeId !=''){
+							var ModelcodeUrl = siteLink + "bodytype-modelcode/" + subtypeNav + "-" + subTypeId + "-" + makerNav + "-" + makerId + "-" + modelcodeNav + ".html";
+						}else{
+							var ModelcodeUrl = siteLink + "type-modelcode/" + typeNav + "-" + typeId + "-" + makerNav + "-" + makerId + "-" + modelcodeNav + ".html";
+						}							
+						typeNavText += '<li><a href="'+ModelcodeUrl+'">'+modelcodeNavText+'</a></li>';
+					}
+					
+					if(((typeof typeId != 'undefined' && typeId!='' && typeof subTypeId != 'undefined' && subTypeId!='') || (typeof typeId != 'undefined' && typeId!='' && typeof makeId != 'undefined' && makeId!='')) && typeof mfg_from != 'undefined' && mfg_from!=''){
+						if(typeof makeId != 'undefined' && makeId!='' && typeof makerId != 'undefined' && makerId!='' && typeof modelcodedesktop != 'undefined' && modelcodedesktop!=''){
+							if(typeof subTypeId != 'undefined' && subTypeId !=''){
+								var YearUrl = siteLink + "japanese-used-" + subtypeNav + "-"+typeId+"-"+makeNav+"-"+makerNav+"-"+modelcodeNav+"-"+mfg_from;
+							}else{
+								var YearUrl = siteLink + "japanese-sale-" + typeNav + "-"+typeId+"-"+makeNav+"-"+makerNav+"-"+modelcodeNav+"-"+mfg_from;
+							}
+						}else if(typeof makeId != 'undefined' && makeId!='' && typeof makerId != 'undefined' && makerId!='' ){
+							if(typeof subTypeId != 'undefined' && subTypeId !=''){
+								var YearUrl = siteLink + "japanese-used-" + subtypeNav + "-"+typeId+"-"+makeNav+"-"+makerNav+"-"+mfg_from;
+							}else{
+								var YearUrl = siteLink + "japanese-sale-" + typeNav + "-"+typeId+"-"+makeNav+"-"+makerNav+"-"+mfg_from;
+							}
+						}else if(typeof makeId != 'undefined' && makeId!='' ){
+							if(typeof subTypeId != 'undefined' && subTypeId !=''){
+								var YearUrl = siteLink + "japanese-used-" + subtypeNav + "-"+typeId+"-"+makeNav+"-"+mfg_from;
+							}else{
+								var YearUrl = siteLink + "japanese-sale-" + typeNav + "-"+typeId+"-"+makeNav+"-"+mfg_from;
+							}
+						}else{
+							if(typeof subTypeId != 'undefined' && subTypeId !=''){
+								var YearUrl = siteLink + "japanese-used-" + subtypeNav + "-"+typeId+"-"+mfg_from;
+							}else{
+								var YearUrl = siteLink + "japanese-sale-" + typeNav + "-"+typeId+"-"+mfg_from;
+							}
+						}
+						typeNavText += '<li><a href="'+YearUrl+'">'+mfg_from+'</a></li>';
+					}
+					
+					
+					$('.typenavshow').after(typeNavText);
+				}
+			}
+		}, 3000);
+		</script>
+<div class="row">
+	<div class="col-lg-2 col-md-2 hidden-sm hidden-xs md-padding-right-0">						<div class="list_left_combo ByMakes">
+				<h3>By Makers				<strong id="MCIMG" class="MIMG display_none pull-right margin_right_5 pointer"><span class="fa-sl fa-sl-up tooltip" aria-label="Show&nbsp;Less" role="tooltip" onclick="___ShowHideMakes(1);"></span></strong>
+				<strong id="MEIMG" class="MIMG display_none pull-right margin_right_5 pointer"><span class="fa-sl fa-sl-down tooltip" aria-label="Show&nbsp;All" role="tooltip" onclick="___ShowHideMakes(2);"></span></strong>
+				</h3>
+				<ul id="ByMakes"></ul>
+			</div>
+			
+						<div class="list_left_combo ByModels display_none" style="border-top:none;">
+				<h3>By Models
+				<strong id="MKCIMG" class="MKIMG display_none pull-right margin_right_5 pointer"><span class="fa-sl fa-sl-up tooltip" aria-label="Show&nbsp;Less" role="tooltip" onclick="___ShowHideModels(1);"></span></strong>
+				<strong id="MKEIMG" class="MKIMG display_none pull-right margin_right_5 pointer"><span class="fa-sl fa-sl-down tooltip" aria-label="Show&nbsp;All" role="tooltip" onclick="___ShowHideModels(2);"></span></strong>
+				</h3>
+				<ul id="ByModels"></ul>
+			</div>
+			
+						<div class="list_left_combo ByBodyType display_none" style="border-top:none;border-top: 1px dotted #ccc;">
+				<h3>By Vehicle Type
+				<strong id="VTCIMG" class="VTIMG display_none pull-right margin_right_5 pointer"><span class="fa-sl fa-sl-up tooltip" aria-label="Show&nbsp;Less" role="tooltip" onclick="___ShowHideTypes(1);"></span></strong>
+				<strong id="VTEIMG" class="VTIMG display_none pull-right margin_right_5 pointer"><span class="fa-sl fa-sl-down tooltip" aria-label="Show&nbsp;All" role="tooltip" onclick="___ShowHideTypes(2);"></span></strong>
+				</h3>
+				<ul id="ByBodyType"></ul>
+			</div>
+			<div class="list_left_combo BySubTypes display_none">
+				<h3>By Body Type
+				<strong id="STCIMG" class="STIMG display_none pull-right margin_right_5 pointer"><span class="fa-sl fa-sl-up tooltip" aria-label="Show&nbsp;Less" role="tooltip" onclick="___ShowHideSubType(1);"></span></strong>
+				<strong id="STEIMG" class="STIMG display_none pull-right margin_right_5 pointer"><span class="fa-sl fa-sl-down tooltip" aria-label="Show&nbsp;All" role="tooltip" onclick="___ShowHideSubType(2);"></span></strong>
+				</h3>
+				<ul id="BySubTypes"></ul>
+			</div></div>
+<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12"><form name="paginationform" method="post" action="/stock_list.php?year_from=2018"><input type="hidden" name="per_page" value="0"><input type="hidden" name="page" value="0"><input type="hidden" name="sort" value=""><input type="hidden" name="seq" value=""><input type="hidden" name="year_from" value="2018"></form><script type="text/javascript">
+				function redirectPage(i)
+				{
+					document.paginationform.page.value=i;
+					document.paginationform.submit();
+					return false;
+				}
+				
+				function view_per_page(j)
+				{
+					document.forms['paginationform'].per_page.value = j;
+					document.forms['paginationform'].submit();
+				}
+				
+				function sorting(sortby, seq)
+				{
+					document.paginationform.sort.value=sortby;
+					document.paginationform.seq.value=seq;					
+					document.paginationform.submit();
+					return false;
+				}
+				</script><div class="clr"></div>
+        <div class="row margin_bottom_5 ListTop">
+        	<div class="col-lg-2 col-md-3 col-sm-3 hidden-xs">
+				<input type="hidden" id="os_hide_fre" value="yes">
+				                <input class="select_clear" value="Select All" type="button" onclick="___selectAll();">&nbsp;&nbsp;|&nbsp;&nbsp;<input class="select_clear" value="Clear All" type="button" onclick="___clearAll();">
+							</div>
+        	<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 mobile-center xs-margin-bottom-5">
+            	<strong>Total Records: </strong>
+                <strong class="defNowRecords">10</strong>
+                <strong>/</strong>
+                <strong class="ttlNowRecords">249,309</strong>	
+            </div>
+            			<div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 xs-margin-bottom-10"><label onclick="FreightCalc();" class="freight_list slow5"><span class="fa-sl fa-sl-freight"></span>&nbsp;Get Total Price</label></div>			
+						<div class="col-lg-offset-2 col-lg-2  col-md-offset-0 col-md-2 col-sm-offset-0 col-sm-3 col-xs-offset-0 col-xs-5 xs-margin-bottom-5">
+            <select id="sorting_order" class="sort-control" onchange="___setSearch('sort');">
+               <option value="">-- Sort By --</option>
+                          </select>
+			<input type="hidden" id="sorting_order_val" name="sorting_order_val" value="">
+            </div>
+			<script type="text/javascript">
+							$(document).ready(function(){
+					var donotloadsort = false;
+					$('#sorting_order').click(function(){
+						if(typeof donotloadsort != 'undefined' && !donotloadsort){
+							var sort = $('#sort').val();
+							var seq = $('#seq').val();
+							var parameter = 'action=_LoadSortOption';	
+														if(sort!=''){
+								parameter +='&sort='+sort;
+							}
+							if(seq!=''){
+								parameter +='&seq='+seq;
+							}
+							$.ajax({
+								beforeSend: function() {},
+								url: ajaxLink,
+								type: 'POST',
+								cache: true,
+								async: true,
+								data: parameter,
+								dataType: 'html',
+								success: function(responseHTML) {
+									//$('#sorting_order option').eq('1').remove();
+									$('#sorting_order option').not(':first').remove();
+									$('#sorting_order').append(responseHTML);
+									donotloadsort = true;
+								}
+							});
+						}else{
+							console.log('aeso');
+						}	
+					});
+				});
+			</script>
+            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 xs-margin-bottom-5"><select id="curren" class="sort-control" onchange="___setCurren();"></select><script> $(window).bind("load", function() {___LoadCurrencyCombos("USD"); });</script>
+			
+			</div>
+        </div>
+                <div class="clr"></div>
+                <div class="row margin_bottom_5 ListTop">
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-bottom-10"><input class="light_btn" value="Multiple Inquiry" type="button" onclick="___openDialogBox('Send Inquiry', 'MI');"></div>
+            <div class="col-lg-2 hidden-md hidden-sm hidden-xs"><input class="light_btn" value="Compare" type="button" onclick="___AddToCompareList();"></div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 xs-margin-bottom-10"><input class="light_btn" value="Add to Cart" type="button" onclick="___AddToWishList('Add To Cart');"></div>
+            <div class="col-lg-2 col-md-3 hidden-sm col-xs-6 xs-margin-bottom-10"><input class="light_btn" value="Save as My Search" type="button" onclick="___openDialogBox('Save as My Search', 'SMS');"></div>
+            <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 list_export">
+            	            	<label class="slow5" onclick="___exportStockPDFFile();"><span class="fa-sl fa-sl-pdf tooltip" aria-label="Export&nbsp;in&nbsp;PDF" role="tooltip"></span></label>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-3 hidden-xs list_view">
+            	<label onclick="___setView('D');" class="slow5 DList ListViews active_list"><span class="fa-sl fa-sl-detail"></span></label>
+                <label onclick="___setView('C');" class="slow5 CList ListViews "><span class="fa-sl fa-sl-grid"></span></label>
+				<label onclick="___setView('B');" class="slow5 BList ListViews "><span class="fa-sl fa-sl-table"></span></label>
+            </div>	
+        </div>
+        <div class="clr"></div>
+                <div class="margin_bottom_10 NoRecordFound text-center display_none"><strong>No Records Found!!</strong></div>
+        <div class="clr"></div>
+        <div class="ListHeader "><div class="stock_list_first JCT9595061" style="background:#F5F5F5;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/9595061-japan-used-toyota-2000.html" title="Used Toyota Corolla">
+                    	<img src="https://cdn.japanesecartrade.com/jct/middle_image/173024820967217e11f1c3a_1.jpeg" class="img-responsive center-block " alt="Used Toyota Corolla">
+                                                
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="9595061" type="checkbox" class="item " name="item[]" value="9595061">
+                        <label for="9595061"><span>6 Dec, 2024</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>2,463						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP9595061" onclick="___setToCompare('9595061');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP9595061 display_none" onclick="___RemoveFromCompare('9595061');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC9595061" onclick="___AddStockToCart('9595061');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC9595061 display_none" onclick="___RemoveStockFromCart('9595061');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/9595061-japan-used-toyota-2000.html">Toyota Corolla <span> (2000)</span></a>
+                    	<strong class="font_14 darkgray_color"></strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP9595061" value="0">
+                        <input type="hidden" class="currCombo" id="P9595061" value="2179205.39945">
+                        <strong class="price9595061">14,000 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	TOYOTA COROLLA LEVIN 2000 <label class="pull-right"><label class="FC" id="FC9595061"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP9595061">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/kantocars/">KantoCars, Fujisawa, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan»Chiba                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/9595061-japan-used-toyota-2000.html" aria-label="JCT Ref #ID" role="tooltip">JCT-9595061</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="KantoCars Stock ID: 8765480" role="tooltip">(Stock ID: 8765480)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: AE111-507****</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>33,845 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>1,600 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Petrol</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Manual</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+											</ul>
+					<div class="list_acc">&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn9595061"><button style="padding:2.5px 0px;" onclick="ShowAppBox('9595061', 'JCT-9595061', '8765480', 'Toyota', 'Corolla', '2000', 'https://www.japanesecartrade.com/9595061-japan-used-toyota-2000.html', '21308', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for Corolla 2000', '9595061');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/9595061-japan-used-toyota-2000.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm9595061" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt9595061" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT12276250" style="background:#FFFFFF;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/12276250-japan-used-mitsubishi-canter-mini-truck-1997.html" title="Used Mitsubishi Canter Mini Truck">
+                    	<img src="https://cdn.japanesecartrade.com/jct/middle_image/1_175591778768a92ddbae82f.jpeg" class="img-responsive center-block " alt="Used Mitsubishi Canter Mini Truck">
+                                                
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="12276250" type="checkbox" class="item " name="item[]" value="12276250">
+                        <label for="12276250"><span>6 Jan, 2026</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>1,370						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP12276250" onclick="___setToCompare('12276250');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP12276250 display_none" onclick="___RemoveFromCompare('12276250');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC12276250" onclick="___AddStockToCart('12276250');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC12276250 display_none" onclick="___RemoveStockFromCart('12276250');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/12276250-japan-used-mitsubishi-canter-mini-truck-1997.html">Mitsubishi Canter <span>KC-FE516B (1997/09)</span></a>
+                    	<strong class="font_14 darkgray_color"></strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP12276250" value="0">
+                        <input type="hidden" class="currCombo" id="P12276250" value="1164318.31342">
+                        <strong class="price12276250">7,480 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	<label class="pull-right"><label class="FC" id="FC12276250"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP12276250">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/braincare/">BrainCare, Setagaya, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/12276250-japan-used-mitsubishi-canter-mini-truck-1997.html" aria-label="JCT Ref #ID" role="tooltip">JCT-12276250</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="BrainCare Stock ID: BC001" role="tooltip">(Stock ID: BC001)</label></div>
+											</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>30,274 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>3,560 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Diesel</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Manual</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>Mini Truck/Mini Truck</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Power Windows | Seat Belt Cover | Power Steering | A/C-Front | AM/FM Radio&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn12276250"><button style="padding:2.5px 0px;" onclick="ShowAppBox('12276250', 'JCT-12276250', 'BC001', 'Mitsubishi', 'Canter', '1997', 'https://www.japanesecartrade.com/12276250-japan-used-mitsubishi-canter-mini-truck-1997.html', '24540', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for Canter 1997', '12276250');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/12276250-japan-used-mitsubishi-canter-mini-truck-1997.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm12276250" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt12276250" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT13861888" style="background:#F5F5F5;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/13861888-japan-used-nissan-skyline-2014.html" title="Used Nissan Skyline 350GT Hybrid Type P Sedan-car">
+                    	<img src="https://assets.japanesecartrade.com/images/loading.gif" data-src="https://cdn.japanesecartrade.com/jct/middle_image/1_17786659476a0449db2b42a.jpeg" class="img-responsive center-block lazy" alt="Used Nissan Skyline 350GT Hybrid Type P Sedan-car">
+                        <label class="new_stock"><span class="fa-sl fa-sl-new tooltip" aria-label="New Arrival" role="tooltip"></span></label>                        
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="13861888" type="checkbox" class="item " name="item[]" value="13861888">
+                        <label for="13861888"><span>13 May, 2026</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>2						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP13861888" onclick="___setToCompare('13861888');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP13861888 display_none" onclick="___RemoveFromCompare('13861888');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC13861888" onclick="___AddStockToCart('13861888');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC13861888 display_none" onclick="___RemoveStockFromCart('13861888');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/13861888-japan-used-nissan-skyline-2014.html">Nissan Skyline <span>DAA-HV37 (2014/03)</span></a>
+                    	<strong class="font_14 darkgray_color"></strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP13861888" value="0">
+                        <input type="hidden" class="currCombo" id="P13861888" value="1270000">
+                        <strong class="price13861888">8,130 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	350GT Hybrid Type P ★Black Leather ★New Full Body Kits ★RAYS 20" Wheels ★Bluetooth &amp; Back Camera<label class="pull-right"><label class="FC" id="FC13861888"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP13861888">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/asjapan/">AsJapan, Gifu, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/13861888-japan-used-nissan-skyline-2014.html" aria-label="JCT Ref #ID" role="tooltip">JCT-13861888</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="AsJapan Stock ID: 4016" role="tooltip">(Stock ID: 4016)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: HV37-202859</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>117,000 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>3,500 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Hybrid</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Automatic</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>Sedan-car</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Spoiler | Side Airbag | Rear Window Defroster | Tinted Glass | Tilt Wheel&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn13861888"><button style="padding:2.5px 0px;" onclick="ShowAppBox('13861888', 'JCT-13861888', '4016', 'Nissan', 'Skyline', '2014', 'https://www.japanesecartrade.com/13861888-japan-used-nissan-skyline-2014.html', '19836', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for Skyline 2014', '13861888');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/13861888-japan-used-nissan-skyline-2014.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm13861888" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt13861888" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT9829481" style="background:#FFFFFF;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/9829481-japan-used-mercedes-b-class-hatchback-2021.html" title="Used Mercedes-benz B-class B200d AMG Line Hatchback">
+                    	<img src="https://assets.japanesecartrade.com/images/loading.gif" data-src="https://cdn.japanesecartrade.com/jct/middle_image/1_173166144267370e8239d69.jpeg" class="img-responsive center-block lazy" alt="Used Mercedes-benz B-class B200d AMG Line Hatchback">
+                        <label class="video_stock"><span class="fa-sl fa-sl-video tooltip" aria-label="Video Stock" role="tooltip"></span></label>                        
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="9829481" type="checkbox" class="item " name="item[]" value="9829481">
+                        <label for="9829481"><span>15 Nov, 2024</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>145						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP9829481" onclick="___setToCompare('9829481');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP9829481 display_none" onclick="___RemoveFromCompare('9829481');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC9829481" onclick="___AddStockToCart('9829481');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC9829481 display_none" onclick="___RemoveStockFromCart('9829481');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/9829481-japan-used-mercedes-b-class-hatchback-2021.html">Mercedes-benz B-class <span>3DA-247012 (2021/12)</span></a>
+                    	<strong class="font_14 green_color">Now on Sale</strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP9829481" value="0">
+                        <input type="hidden" class="currCombo" id="P9829481" value="2788000">
+                        <strong class="price9829481">17,860 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	Mercedes-Benz B200d AMG Line/3DA-247012/2000cc<label class="pull-right"><label class="FC" id="FC9829481"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP9829481">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/shinei/">ShinEi, Yamato, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan»Yokohama                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/9829481-japan-used-mercedes-b-class-hatchback-2021.html" aria-label="JCT Ref #ID" role="tooltip">JCT-9829481</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="ShinEi Stock ID: KTO-17680" role="tooltip">(Stock ID: KTO-17680)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: W1K2470122J341843</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>49,000 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>2,000 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Diesel</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Automatic</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>Hatchback</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Side Airbag | Rear Window Wiper | Tilt Wheel | Dual Aircondition | Turbo&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn9829481"><button style="padding:2.5px 0px;" onclick="ShowAppBox('9829481', 'JCT-9829481', 'KTO-17680', 'Mercedes-benz', 'B-class', '2021', 'https://www.japanesecartrade.com/9829481-japan-used-mercedes-b-class-hatchback-2021.html', '11830', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for B-class 2021', '9829481');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/9829481-japan-used-mercedes-b-class-hatchback-2021.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm9829481" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt9829481" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT9996795" style="background:#F5F5F5;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/9996795-japan-used-nissan-x-trail-suv-2017.html" title="Used Nissan X-trail 20Xtt Emergency Brake PKG 4WD SUV">
+                    	<img src="https://assets.japanesecartrade.com/images/loading.gif" data-src="https://cdn.japanesecartrade.com/jct/middle_image/1_17328008446748714cd35ce.jpeg" class="img-responsive center-block lazy" alt="Used Nissan X-trail 20Xtt Emergency Brake PKG 4WD SUV">
+                        <label class="video_stock"><span class="fa-sl fa-sl-video tooltip" aria-label="Video Stock" role="tooltip"></span></label>                        
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="9996795" type="checkbox" class="item " name="item[]" value="9996795">
+                        <label for="9996795"><span>28 Nov, 2024</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>233						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP9996795" onclick="___setToCompare('9996795');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP9996795 display_none" onclick="___RemoveFromCompare('9996795');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC9996795" onclick="___AddStockToCart('9996795');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC9996795 display_none" onclick="___RemoveStockFromCart('9996795');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/9996795-japan-used-nissan-x-trail-suv-2017.html">Nissan X-trail <span>DBA-NT32 (2017/03)</span></a>
+                    	<strong class="font_14 green_color">Now on Sale</strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP9996795" value="0">
+                        <input type="hidden" class="currCombo" id="P9996795" value="1388000">
+                        <strong class="price9996795">8,890 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	NISSAN X-Trail 20Xtt Emergency Brake PKG 4WD/DBA-NT32/2000cc<label class="pull-right"><label class="FC" id="FC9996795"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP9996795">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/shinei/">ShinEi, Yamato, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan»Yokohama                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/9996795-japan-used-nissan-x-trail-suv-2017.html" aria-label="JCT Ref #ID" role="tooltip">JCT-9996795</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="ShinEi Stock ID: KTO-17735" role="tooltip">(Stock ID: KTO-17735)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: NT32-052312</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>80,600 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>2,000 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Petrol</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Automatic</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>SUV</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Side Airbag | Rear Window Wiper | Tilt Wheel | Dual Aircondition | Security System&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn9996795"><button style="padding:2.5px 0px;" onclick="ShowAppBox('9996795', 'JCT-9996795', 'KTO-17735', 'Nissan', 'X-trail', '2017', 'https://www.japanesecartrade.com/9996795-japan-used-nissan-x-trail-suv-2017.html', '11830', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for X-trail 2017', '9996795');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/9996795-japan-used-nissan-x-trail-suv-2017.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm9996795" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt9996795" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT10652027" style="background:#FFFFFF;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/10652027-japan-used-honda-acty-truck-mini-1998.html" title="Used Honda Acty Truck SDX 4WD/AC/MT Mini Truck">
+                    	<img src="https://assets.japanesecartrade.com/images/loading.gif" data-src="https://cdn.japanesecartrade.com/jct/middle_image/1_17376523306792786a51e70.jpeg" class="img-responsive center-block lazy" alt="Used Honda Acty Truck SDX 4WD/AC/MT Mini Truck">
+                        <label class="video_stock"><span class="fa-sl fa-sl-video tooltip" aria-label="Video Stock" role="tooltip"></span></label>                        
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="10652027" type="checkbox" class="item " name="item[]" value="10652027">
+                        <label for="10652027"><span>24 Jan, 2025</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>387						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP10652027" onclick="___setToCompare('10652027');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP10652027 display_none" onclick="___RemoveFromCompare('10652027');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC10652027" onclick="___AddStockToCart('10652027');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC10652027 display_none" onclick="___RemoveStockFromCart('10652027');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/10652027-japan-used-honda-acty-truck-mini-1998.html">Honda Acty Truck <span>V-HA4 (1998)</span></a>
+                    	<strong class="font_14 green_color">Now on Sale</strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP10652027" value="0">
+                        <input type="hidden" class="currCombo" id="P10652027" value="0">
+                        <strong><a href="https://www.japanesecartrade.com/10652027-japan-used-honda-acty-truck-mini-1998.html" class="site_color">ASK</a></strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	HONDA ACTY TRUCK SDX 4WD/Air condition/3cylinder/Manual/V-HA4/E07A/660 cc<label class="pull-right"><label class="FC" id="FC10652027"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP10652027">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/shinei/">ShinEi, Yamato, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan»Yokohama                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/10652027-japan-used-honda-acty-truck-mini-1998.html" aria-label="JCT Ref #ID" role="tooltip">JCT-10652027</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="ShinEi Stock ID: KTO-18089" role="tooltip">(Stock ID: KTO-18089)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: HA4-2392313</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>92,300 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>660 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Petrol</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Manual</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>Mini Truck</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Alloy Wheels | A/C-Front | AM/FM Radio | No Accidents | New Tires&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn10652027"><button style="padding:2.5px 0px;" onclick="ShowAppBox('10652027', 'JCT-10652027', 'KTO-18089', 'Honda', 'Acty Truck', '1998', 'https://www.japanesecartrade.com/10652027-japan-used-honda-acty-truck-mini-1998.html', '11830', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for Acty Truck 1998', '10652027');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/10652027-japan-used-honda-acty-truck-mini-1998.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm10652027" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt10652027" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT10831855" style="background:#F5F5F5;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/10831855-japan-used-mercedes-c-class-sedan-car-2017.html" title="Used Mercedes-benz C-class C200 AvantGarde Sedan-car">
+                    	<img src="https://assets.japanesecartrade.com/images/loading.gif" data-src="https://cdn.japanesecartrade.com/jct/middle_image/1_173896644267a685aa2bd40.jpeg" class="img-responsive center-block lazy" alt="Used Mercedes-benz C-class C200 AvantGarde Sedan-car">
+                        <label class="video_stock"><span class="fa-sl fa-sl-video tooltip" aria-label="Video Stock" role="tooltip"></span></label>                        
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="10831855" type="checkbox" class="item " name="item[]" value="10831855">
+                        <label for="10831855"><span>8 Feb, 2025</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>391						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP10831855" onclick="___setToCompare('10831855');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP10831855 display_none" onclick="___RemoveFromCompare('10831855');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC10831855" onclick="___AddStockToCart('10831855');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC10831855 display_none" onclick="___RemoveStockFromCart('10831855');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/10831855-japan-used-mercedes-c-class-sedan-car-2017.html">Mercedes-benz C-class <span>RBA-205042C (2017/10)</span></a>
+                    	<strong class="font_14 green_color">Now on Sale</strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP10831855" value="0">
+                        <input type="hidden" class="currCombo" id="P10831855" value="1788000">
+                        <strong class="price10831855">11,450 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	★Fast Shipping★2017.10★Mercedes-Benz C200 AvantGarde/RaderSafety PKG/RBA-205042C/2000cc<label class="pull-right"><label class="FC" id="FC10831855"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP10831855">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/shinei/">ShinEi, Yamato, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan»Yokohama                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/10831855-japan-used-mercedes-c-class-sedan-car-2017.html" aria-label="JCT Ref #ID" role="tooltip">JCT-10831855</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="ShinEi Stock ID: KTO-18234" role="tooltip">(Stock ID: KTO-18234)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: WDD2050422R342469</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>38,000 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>2,000 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Petrol</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Automatic</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>Sedan-car</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Side Airbag | Tilt Wheel | Dual Aircondition | Turbo | Security System&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn10831855"><button style="padding:2.5px 0px;" onclick="ShowAppBox('10831855', 'JCT-10831855', 'KTO-18234', 'Mercedes-benz', 'C-class', '2017', 'https://www.japanesecartrade.com/10831855-japan-used-mercedes-c-class-sedan-car-2017.html', '11830', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for C-class 2017', '10831855');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/10831855-japan-used-mercedes-c-class-sedan-car-2017.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm10831855" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt10831855" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT11009625" style="background:#FFFFFF;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/11009625-japan-used-volvo-xc90-suv-2018.html" title="Used Volvo XC90 T6 AWD Inscription 4WD/Sunroof SUV">
+                    	<img src="https://assets.japanesecartrade.com/images/loading.gif" data-src="https://cdn.japanesecartrade.com/jct/middle_image/1_174128736467c9efc4f3644.jpeg" class="img-responsive center-block lazy" alt="Used Volvo XC90 T6 AWD Inscription 4WD/Sunroof SUV">
+                        <label class="video_stock"><span class="fa-sl fa-sl-video tooltip" aria-label="Video Stock" role="tooltip"></span></label>                        
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="11009625" type="checkbox" class="item " name="item[]" value="11009625">
+                        <label for="11009625"><span>6 Mar, 2025</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>188						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP11009625" onclick="___setToCompare('11009625');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP11009625 display_none" onclick="___RemoveFromCompare('11009625');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC11009625" onclick="___AddStockToCart('11009625');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC11009625 display_none" onclick="___RemoveStockFromCart('11009625');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/11009625-japan-used-volvo-xc90-suv-2018.html">Volvo XC90 <span>DBA-LB420XCA (2018/02)</span></a>
+                    	<strong class="font_14 green_color">Now on Sale</strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP11009625" value="0">
+                        <input type="hidden" class="currCombo" id="P11009625" value="3188000">
+                        <strong class="price11009625">20,420 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	VOLVO XC90 T6 AWD Inscription 4WD/Sunroof/DBA-LB420XCA/2000cc<label class="pull-right"><label class="FC" id="FC11009625"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP11009625">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/shinei/">ShinEi, Yamato, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan»Yokohama                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/11009625-japan-used-volvo-xc90-suv-2018.html" aria-label="JCT Ref #ID" role="tooltip">JCT-11009625</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="ShinEi Stock ID: KTO-18292" role="tooltip">(Stock ID: KTO-18292)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: YV1LFA2MCJ1355957</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>156,500 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>2,000 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Petrol</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Automatic</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>SUV</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Side Airbag | Rear Window Wiper | Dual Aircondition | Turbo | Security System&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn11009625"><button style="padding:2.5px 0px;" onclick="ShowAppBox('11009625', 'JCT-11009625', 'KTO-18292', 'Volvo', 'XC90', '2018', 'https://www.japanesecartrade.com/11009625-japan-used-volvo-xc90-suv-2018.html', '11830', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for XC90 2018', '11009625');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/11009625-japan-used-volvo-xc90-suv-2018.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm11009625" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt11009625" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT11248215" style="background:#F5F5F5;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/11248215-japan-used-toyota-harrier-suv-2010.html" title="Used Toyota Harrier 2.4 240G Premium L-PKG SUV">
+                    	<img src="https://assets.japanesecartrade.com/images/loading.gif" data-src="https://cdn.japanesecartrade.com/jct/middle_image/1_174220572567d7f31db9d0b.jpeg" class="img-responsive center-block lazy" alt="Used Toyota Harrier 2.4 240G Premium L-PKG SUV">
+                        <label class="video_stock"><span class="fa-sl fa-sl-video tooltip" aria-label="Video Stock" role="tooltip"></span></label>                        
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="11248215" type="checkbox" class="item " name="item[]" value="11248215">
+                        <label for="11248215"><span>17 Mar, 2025</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>436						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP11248215" onclick="___setToCompare('11248215');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP11248215 display_none" onclick="___RemoveFromCompare('11248215');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC11248215" onclick="___AddStockToCart('11248215');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC11248215 display_none" onclick="___RemoveStockFromCart('11248215');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/11248215-japan-used-toyota-harrier-suv-2010.html">Toyota Harrier <span>CBA-ACU30W (2010/09)</span></a>
+                    	<strong class="font_14 green_color">Now on Sale</strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP11248215" value="0">
+                        <input type="hidden" class="currCombo" id="P11248215" value="1288000">
+                        <strong class="price11248215">8,250 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	TOYOTA Harrier 2.4 240G Premium L-PKG/CBA-ACU30W/2400cc<label class="pull-right"><label class="FC" id="FC11248215"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP11248215">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/shinei/">ShinEi, Yamato, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan»Yokohama                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/11248215-japan-used-toyota-harrier-suv-2010.html" aria-label="JCT Ref #ID" role="tooltip">JCT-11248215</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="ShinEi Stock ID: KTO-18409" role="tooltip">(Stock ID: KTO-18409)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: ACU30-0115512</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>36,700 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>2,400 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Petrol</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Automatic</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>SUV</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Side Airbag | Rear Window Wiper | Security System | Back Camera | Power Windows&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn11248215"><button style="padding:2.5px 0px;" onclick="ShowAppBox('11248215', 'JCT-11248215', 'KTO-18409', 'Toyota', 'Harrier', '2010', 'https://www.japanesecartrade.com/11248215-japan-used-toyota-harrier-suv-2010.html', '11830', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for Harrier 2010', '11248215');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/11248215-japan-used-toyota-harrier-suv-2010.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm11248215" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt11248215" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<div class="stock_list_first JCT11520834" style="background:#FFFFFF;">
+        	<div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-3 col-xs-12 padding_right_5">
+                    <div class="list_image"><a href="https://www.japanesecartrade.com/11520834-japan-used-mercedes-c-class-sedan-car-2019.html" title="Used Mercedes-benz C-class C180 AvantGarde AMG Line/Panoramic SR Sedan-car">
+                    	<img src="https://assets.japanesecartrade.com/images/loading.gif" data-src="https://cdn.japanesecartrade.com/jct/middle_image/1_174497268368022b8b59486.jpeg" class="img-responsive center-block lazy" alt="Used Mercedes-benz C-class C180 AvantGarde AMG Line/Panoramic SR Sedan-car">
+                        <label class="video_stock"><span class="fa-sl fa-sl-video tooltip" aria-label="Video Stock" role="tooltip"></span></label>                        
+                    </a></div>
+                    <div class="list_update">
+                    	<input id="11520834" type="checkbox" class="item " name="item[]" value="11520834">
+                        <label for="11520834"><span>18 Apr, 2025</span></label>
+						&nbsp;<span class="fa-sl fa-sl-views tooltip" aria-label="Total Views" role="tooltip"></span>300						                        	<label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs ASTCP ASTCP11520834" onclick="___setToCompare('11520834');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Compare</label>
+                            <label class="comparecart margin_left_10  hidden-md hidden-sm hidden-xs RSTCP RSTCP11520834 display_none" onclick="___RemoveFromCompare('11520834');"><span class="fa-sl fa-sl-compare"></span>&nbsp;Remove</label>
+                            
+                            <label class="comparecart ASTC11520834" onclick="___AddStockToCart('11520834');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Add to Cart</label>
+							<label class="comparecart RSTC11520834 display_none" onclick="___RemoveStockFromCart('11520834');"><span class="fa-sl fa-sl-cart"></span>&nbsp;Remove</label>
+                                            </div>
+                </div>
+                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+                    <h2 class="list_head"><a href="https://www.japanesecartrade.com/11520834-japan-used-mercedes-c-class-sedan-car-2019.html">Mercedes-benz C-class <span>DBA-205040C (2019/02)</span></a>
+                    	<strong class="font_14 green_color">Now on Sale</strong>
+						<span class="pull-right">FOB : 
+                        <input type="hidden" class="offerPrice" id="OP11520834" value="0">
+                        <input type="hidden" class="currCombo" id="P11520834" value="2788000">
+                        <strong class="price11520834">17,860 USD</strong>                        </span>
+                    </h2>
+                    <div class="list_exporter">
+                    	<div class="margin_bottom_5">
+                        	Mercedes-Benz C180 AvantGarde AMG Line/Panoramic SR/DBA-205040C/1600cc<label class="pull-right"><label class="FC" id="FC11520834"></label><strong onclick="FreightCalc();" class="list_freight FCP" id="FCP11520834">Select Country &amp; Port&nbsp;&nbsp;<span class="fa-sl fa-sl-calculator tooltip tooltipbig tooltipright" aria-label="Get Estimate Total Price of this Vehicle" role="tooltip"></span></strong></label>                        </div>
+                        <div class="clr"></div>
+                    	<div class="freight_amount">
+                        	                        	<span class="fa-sl fa-sl-dealer tooltip" aria-label="Dealer" role="tooltip"></span><a href="https://www.japanesecartrade.com/shinei/">ShinEi, Yamato, Japan</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span class="fa-sl fa-sl-location tooltip" aria-label="Stock Location" role="tooltip"></span>Japan»Yokohama                        </div>
+                    </div>
+					<div class="row margin_bottom_10 margin_top_20">
+						<div class="col-lg-6 col-md-6 col-sm-7 col-xs-12 xs-margin-bottom-5">Ref# <a class="tooltip" href="https://www.japanesecartrade.com/11520834-japan-used-mercedes-c-class-sedan-car-2019.html" aria-label="JCT Ref #ID" role="tooltip">JCT-11520834</a>&nbsp;<label class="tooltip" style="font-size:12px;color:#666;" aria-label="ShinEi Stock ID: RTC-18261" role="tooltip">(Stock ID: RTC-18261)</label></div>
+						<div class="col-lg-6 col-md-6 col-sm-5 col-xs-12">Chassis No.: WDD2050402R445499</div>					</div>
+					<ul class="list_info">
+												<li><span class="fa-sl fa-sl-mileage tooltip" aria-label="Mileage" role="tooltip"></span>42,100 KM</li>
+												<li><span class="fa-sl fa-sl-engine tooltip" aria-label="Engine CC" role="tooltip"></span>1,600 CC</li>
+												<li><span class="fa-sl fa-sl-fuel tooltip" aria-label="Fuel" role="tooltip"></span>Petrol</li>
+												<li><span class="fa-sl fa-sl-transmission tooltip" aria-label="Transmission" role="tooltip"></span>Automatic</li>
+												<li><span class="fa-sl fa-sl-steering tooltip" aria-label="Steering" role="tooltip"></span>Right Hand Drive</li>
+												<li><span class="fa-sl fa-sl-type tooltip" aria-label="Type" role="tooltip"></span>Sedan-car</li>
+											</ul>
+					<div class="list_acc"><strong>Options:</strong>Side Airbag | Tilt Wheel | Dual Aircondition | Turbo | Security System&nbsp;</div>
+					<div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">							
+							<div id="AppBtn11520834"><button style="padding:2.5px 0px;" onclick="ShowAppBox('11520834', 'JCT-11520834', 'RTC-18261', 'Mercedes-benz', 'C-class', '2019', 'https://www.japanesecartrade.com/11520834-japan-used-mercedes-c-class-sedan-car-2019.html', '11830', 'wa', '2');" class="btn-whatsapp-list"><span class="fa-sl fa-sl-wp"></span><label>WhatsApp Now!!</label></button></div>						</div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-5"><input type="button" class="list_button" onclick="___singleInquiry('Get Quote for C-class 2019', '11520834');" value="Get Free Quote"></div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-md hidden-sm hidden-xs"><a href="https://www.japanesecartrade.com/11520834-japan-used-mercedes-c-class-sedan-car-2019.html" class="list_button_gray">View Full Details</a></div>
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin_top_5"><div class="col-lg-offset-2 col-lg-8"><div id="AppForm11520834" class="" style="display:none;">&nbsp;</div></div></div>
+            <div id="LoadingOpt11520834" class="loading_div"><div class="loader_in"></div></div>            
+        </div>
+		<input type="hidden" id="ttlNowRecords" value="249309">
+		<input type="hidden" id="defNowRecords" value="10">
+		<input type="hidden" id="lastStockNo" value="11520834"></div>            <div class="text-center">
+                <ul class="pagination">
+                                                            <li class="active"><span>1</span></li><li><a href="javascript:redirectPage('1')">2</a></li><li><a href="javascript:redirectPage('2')">3</a></li><li><a href="javascript:redirectPage('3')">4</a></li><li><a href="javascript:redirectPage('4')">5</a></li><li><a href="javascript:redirectPage('5')">6</a></li><li><a href="javascript:redirectPage('6')">7</a></li><li><a href="javascript:redirectPage('7')">8</a></li><li><a href="javascript:redirectPage('8')">9</a></li><li><a href="javascript:redirectPage('9')">10</a></li><li><a href="javascript:redirectPage('10')">11</a></li><li><a href="javascript:redirectPage('11')">12</a></li><li><a href="javascript:redirectPage('12')">13</a></li><li><a href="javascript:redirectPage('13')">14</a></li><li><a href="javascript:redirectPage('14')">15</a></li>                    <li><a href="javascript:redirectPage('24930')" class="tooltip" aria-label="Last&nbsp;Page">...</a></li>                    <li><a href="javascript:redirectPage('1')" class="tooltip" aria-label="Next&nbsp;Page"><i class="arrow-big right-arrow"></i><i class="arrow-big right-arrow"></i></a></li>                </ul>
+            </div>
+        <script>
+</script></div>
+</div><div class="footer_content hidden-xs">
+	        <div>
+    	        <div class="margin_bottom_10"><strong><span class="red_color">Japanese</span><span class="blue_color">CarTrade</span>.com</strong> receives lots of vehicles inquiries every day from many countries. You can find hundreds of vehicles ready stock for buy.
+    			Please check list of all <a href="https://www.japanesecartrade.com/japan-cars-exporters.html" target="_blank"> Vehicles Exporters</a> in Japan or send your <a href="https://www.japanesecartrade.com/enquiry.php" target="_blank">inquiry</a> to get best offers.</div>
+                <div class="row">
+                	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 xs-margin-bottom-10"><a href="https://blog.japanesecartrade.com/import-regulations/" class="big_btn" rel="nofollow">Import Regulations</a></div>
+                	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 xs-margin-bottom-10"><a href="https://www.japanesecartrade.com/enquiry.php" class="big_btn">Send Inquiry</a></div>
+                	<div class="col-lg-4 col-md-4 hidden-sm col-xs-12 xs-margin-bottom-10"><a href="https://www.japanesecartrade.com/send.php" class="big_btn">Contact Us</a></div>
+                </div>
+            </div>
+	    </div></div><script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "JapaneseCarTrade.com",
+    "alternateName": "JCT",
+    "url": "https://www.japanesecartrade.com",
+    "description": "Most trusted free Japan used cars portal since 2005. Browse 250,000+ used cars, trucks, buses & machinery for export from Japan. No commission fees.",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.japanesecartrade.com/stock_list.php?search_keyword={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+<script>
+var meilidealerid = '';
+
+function SetCountryStock(country, tel_code, flagcls) {
+    document.getElementById("tel_code_stock").value = tel_code;
+    document.getElementById("wa_country_stock").value = country;
+    $("#tel_code_dis_stock").html(tel_code);
+    $("#flgClsStock").removeClass();
+    $("#flgClsStock").addClass(flagcls);
+    ShowCountryDropStock();
+}
+function ShowCountryDropStock() {
+    document.getElementById("myDropdownStock").classList.toggle("show");
+}
+
+function filterFunctionStock() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInputStock");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdownStock");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+
+$(document).on('click', function(event) {
+	console.log('click to hide div');
+    if (!$(event.target).closest('#myDropdownStock').length && !$(event.target).closest('.dropbtnstock').length) {
+		if ($('#myDropdownStock').is(':visible')) {
+			$('#myDropdownStock').removeClass('show');
+		}
+    }
+});
+
+function FetchCountryDropdown(val) {
+	$("#myDropdownStock a").each(function () {
+		if ($(this).text().trim().startsWith(val)) {
+			$(this).trigger("click"); // simulate click
+		}
+	});
+}
+
+	LoadMetaData(5000);
+		
+	function LoadMetaData(delay){
+		setTimeout(function() {
+			var linkTags = [
+				{ rel: 'preconnect', href: 'https://cdn.japanesecartrade.com' },
+				{ rel: 'dns-prefetch', href: 'https://cdn.japanesecartrade.com' },
+				{ rel: 'preload', as: 'font', href: 'https://www.japanesecartrade.com/fonts/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2', crossorigin: 'anonymous' },
+				{ rel: 'preload', as: 'font', href: 'https://www.japanesecartrade.com/fonts/CWB0XYA8bzo0kSThX0UTuA.woff2', crossorigin: 'anonymous' }
+			];
+				
+			linkTags.forEach(function(tagInfo) {
+				var link = document.createElement('link');
+					
+				link.setAttribute('rel', tagInfo.rel);
+				link.setAttribute('href', tagInfo.href);
+				
+				if (tagInfo.as) {
+					link.setAttribute('as', tagInfo.as);
+				}
+				
+				if (tagInfo.crossorigin) {
+					link.setAttribute('crossorigin', tagInfo.crossorigin);
+				}
+					
+				document.getElementsByTagName('head')[0].appendChild(link);
+			});
+				
+			var titleElement = document.querySelector('title');
+			if (!titleElement) {
+				titleElement = document.createElement('title');
+				document.getElementsByTagName('head')[0].appendChild(titleElement);
+			}
+			
+			titleElement.textContent = 'Japanese Used Cars Exporters, Japan Used Cars, Japanese Car Importers...';
+			
+			var metaTags = [
+				{ HTTPEQUIV: 'Content-Type', content: 'text/html; charset=utf-8' },
+								{ name: 'keywords', content: 'japanese used cars, japan used car exporters, japanese car importers, used cars from japan, japan used car exports, japanese car trade, japanesecartrade, used cars sales in japan, japan, nippon, japan used mini trucks, japanese vehicle importers, japan used vehicles, salvage cars, damaged cars from japan, japan used cars auction agents, japan used SUV, sedan, truck, buses, parts, equipments,...' },
+				{ name: 'description', content: 'JapaneseCarTrade.com is a used car portal. Importers and buyers can find here quality used cars, trucks and equipment from hundreds of exporters in Japan' },
+				{ property: 'og:image', content: 'https://cdn.japanesecartrade.com/jctimages/logo-fb.jpg' },
+				{ property: 'og:image:alt', content: 'Japanese Used Cars Portal' },
+				{ property: 'og:title', content: 'Japanese Used Cars Exporters, Japan Used Cars, Japanese Car Importers...' },
+				{ property: 'og:description', content: 'JapaneseCarTrade.com is a used car portal. Importers and buyers can find here quality used cars, trucks and equipment from hundreds of exporters in Japan' },
+				{ property: 'og:type', content: 'website' },
+				{ property: 'og:url', content: 'https://www.japanesecartrade.com/stock_list.php?year_from=2018' },
+				{ HTTPEQUIV: 'X-UA-Compatible', content: 'IE=edge' },
+				{ HTTPEQUIV: 'Cache-Control', content: 'max-age=31536000' },
+				{ name: 'robots', content: 'INDEX,FOLLOW' },
+				{ name: 'robots', content: 'NOODP' },
+				{ name: 'google-site-verification', content: 'HPV6LRzHSTRpmuWuMwYHfF1tEHF6SvvTfhf0INJ2zLk' },
+				{ name: 'msvalidate.01', content: 'F0C99C6E77551F64CCD5F6EF5B7CE2FD' },
+			];
+			
+			metaTags.forEach(function(tagInfo) {
+				var meta = document.createElement('meta');
+				
+				if (tagInfo.name) {
+					meta.setAttribute('name', tagInfo.name);
+				}
+			
+				if (tagInfo.property) {
+					meta.setAttribute('property', tagInfo.property);
+				}
+			
+				if (tagInfo.content) {
+					meta.setAttribute('content', tagInfo.content);
+				}
+				
+				if (tagInfo.HTTPEQUIV) {
+					meta.setAttribute('HTTP-EQUIV', tagInfo.HTTPEQUIV);
+				}
+				
+				document.getElementsByTagName('head')[0].appendChild(meta);
+			});
+		}, delay);
+	}
+	
+	</script>	
+	<div class="margin_top_50"></div><div class="bot_strip">
+    <div class="container">
+        <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-6 hidden-xs mobile-center margin_top_10">
+                <a target="_blank" href="https://www.japanesecartrade.com/privacy.php">Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="https://www.japanesecartrade.com/cookie_policy.php">Cookie</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="https://www.japanesecartrade.com/terms.php">Terms</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="https://www.japanesecartrade.com/disclaimer.php">Disclaimer</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time Elapsed: 0.0159 sec            </div>
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs text-center">
+            <!--<a href="javascript:void(0)" onclick="openwin('https://seal.godaddy.com/verifySeal?sealID=LVjIzgRCd6qH3cR5Ouudy1EAicJyTEU7DpLscLvgSV6N4VllpBCCoz8Yk6c5',600,460)" rel="nofollow"><span class="fa-tp fa-tp-godaddy"></span></a>-->
+			<div class="app_download"><strong>Download Our App </strong> <a href="https://apps.apple.com/app/jct-japan-used-cars/id6448906057" rel="nofollow" target="_blank"><span class="fa-tp fa-tp-app"></span></a> <a href="https://play.google.com/store/apps/details?id=com.japanesecartradeJCT.jct&amp;pli=1" rel="nofollow" target="_blank"><span class="fa-tp fa-tp-play-store"></span></a></div>
+            </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-right mobile-center margin_top_10 xs-margin-top-0">All Right Reserved © 2026 - 2027 JapaneseCarTrade.com</div>
+			<div class="col-xs-12 hidden-lg hidden-md hidden-sm text-center">Time Elapsed: 0.0159 sec</div>
+
+        </div>
+    </div>
+</div>
+<div class="social_share hidden-xs">
+        <h3>Share</h3>
+        <ul>
+            <li class="wa_fix"><a href="https://api.whatsapp.com/send?text=Please check this website. Click Here: https://www.japanesecartrade.com/stock_list.php?year_from=2018" data-action="share/whatsapp/share" aria-label="Whatsapp" target="_blank" rel="noreferrer"><span class="fa-tp fa-tp-wa"></span></a></li>
+            <li class="fb_fix"><a href="https://www.facebook.com/sharer/sharer.php?u=https://www.japanesecartrade.com/stock_list.php?year_from=2018" target="_blank" rel="noreferrer" aria-label="Facebook"><span class="fa-tp fa-tp-fb"></span></a></li>
+            <li class="tt_fix"><a href="https://twitter.com/intent/tweet?url=https://www.japanesecartrade.com/stock_list.php?year_from=2018" target="_blank" rel="noreferrer" aria-label="Twitter"><span class="fa-tp fa-tp-tt"></span></a></li>
+            <li class="pt_fix"><a href="https://www.pinterest.com/pin/create/bookmarklet/?url=https://www.japanesecartrade.com/stock_list.php?year_from=2018&amp;media=&amp;description=" target="_blank" rel="noreferrer" aria-label="Pinterest"><span class="fa-tp fa-tp-pt"></span></a></li>
+            <li class="ld_fix"><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.japanesecartrade.com/stock_list.php?year_from=2018" target="_blank" rel="noreferrer" aria-label="LinkedIn"><span class="fa-tp fa-tp-ld"></span></a></li>
+            <li class="em_fix"><a href="mailto:?subject=Used%20Cars%20for%20Sale%20at%20JapaneseCarTrade.com&amp;body=Hi,%0A%0A%20Please%20visit%20JapaneseCarTrade.com" rel="noreferrer" aria-label="EmailUs"><span class="fa-tp fa-tp-em"></span></a></li>
+        </ul>
+    </div>
+    <div class="scroll_button">
+        <div class="icons">
+            <div class="icons-line">
+                <span class="fa-tp fa-tp-contactus"></span>  
+                Contact us  	
+            </div>
+            <div class="messangers-block lg show-messageners-block">
+                <div class="icons_button">
+                    <a href="https://www.japanesecartrade.com/enquiry.php" class="messanger msg-fb"> <span> <span class="fa-tp fa-tp-inquiry-new"> </span> </span> <p> Send Inquiry </p> </a>
+                    <a href="https://www.japanesecartrade.com/stock_list.php" class="messanger msg-stock"> <span> <span class="fa-tp fa-tp-stock-search"> </span> </span> <p> Stock Search </p> </a>
+                    <a href="https://www.japanesecartrade.com/send.php" class="messanger msg-whatsapp"> <span> <span class="fa-tp fa-tp-contact-new"> </span> </span> <p> Contact Us </p> </a>
+                    <a href="https://www.japanesecartrade.com/how_to_buy.php" class="messanger msg-how "> <span> <span class="fa-tp fa-tp-howbuy"> </span></span> <p> How to Buy  </p> </a>
+                    <a href="https://www.japanesecartrade.com/help_support.php" class="messanger msg-help"> <span> <span class="fa-tp fa-tp-help-faq"> </span> </span> <p> Help/FAQs </p> </a>
+                    <a href="https://www.japanesecartrade.com/japan_car_exporters.php" class="messanger msg-chat"> <span> <span class="fa-tp fa-tp-exporter"> </span> </span> <p>Car Dealers</p></a>
+                </div>
+            </div>
+        </div>
+    </div><div id="compare_form_bot"></div><div class="scrollup slow5"><span class="fa-tp fa-tp-top"></span></div><script>
+    var ASSETURL = "https://cdn.japanesecartrade.com";
+	//var topdesktopsearchjs = "https://cdn.japanesecartrade.com/jctjs/stock_list_js_desktop_JAN_28_2025.js?202106254812452154657";
+	var topdesktopsearchjs = "https://cdn.japanesecartrade.com/jctjs/stock_list_js_desktop_SEP_30_2025.js?202106254812452154657";
+</script>
+			<!--<script src="https://cdn.japanesecartrade.com/jctjs/common_js_desktop_JAN_28_2025_n.js?202106254812452154657"></script>-->
+			<script src="https://cdn.japanesecartrade.com/jctjs/common_js_desktop_APR_08_2026.js?202106254812452154657"></script><!--<script src="https://cdn.japanesecartrade.com/jctjs/stock_list_js_desktop_JAN_28_2025.js?202106254812452154657"></script>-->
+				<script src="https://cdn.japanesecartrade.com/jctjs/stock_list_js_desktop_SEP_30_2025.js?202106254812452154657"></script>	<script type="text/javascript">
+		function LoadTesimonialYouTube(id,youtubesrc){
+			$('#videoContainer_'+id).html('<iframe width="100%" height="200" src="'+youtubesrc+'?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+		}
+	</script>
+<div id="alert_popup_com"></div><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;74a9b388170a4687b58eb81623a7dfed&quot;,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fb271c66d128a6b',t:'MTc3ODY4MzUwMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; visibility: hidden;"></iframe>
+<div id="batBeacon760196518615" style="width: 0px; height: 0px; display: none; visibility: hidden;"><img id="batBeacon627516086609" width="0" height="0" alt="" src="https://bat.bing.com/action/0?ti=97167808&amp;Ver=2&amp;mid=fa85ad94-c3c7-486e-ac59-f0733532ce72&amp;bo=1&amp;sid=530227d04eda11f19b1cc30bd9462448&amp;vid=53024ac04eda11f1b81ef566532124fc&amp;vids=1&amp;msclkid=N&amp;pi=0&amp;lg=en-US&amp;sw=1280&amp;sh=720&amp;sc=24&amp;nwd=1&amp;p=https%3A%2F%2Fwww.japanesecartrade.com%2Fstock_list.php%3Fyear_from%3D2018&amp;r=&amp;lt=1732&amp;evt=pageLoad&amp;sv=2&amp;cdb=AQAQ&amp;rn=107544" style="width: 0px; height: 0px; display: none; visibility: hidden;"></div></body></html>
