@@ -34,7 +34,7 @@ class BeforwardScraper(BaseScraper):
     base_url = "https://www.beforward.jp"
     country = "japan"
     currency = "USD"
-
+    
     def scrape_listings(self, pages: int = 5) -> list[dict]:
         listings = []
         seen_urls = set()
@@ -70,12 +70,7 @@ class BeforwardScraper(BaseScraper):
             if len(cards) < 3:
                 break
 
-        # Filter 2018+ in Python
-        from datetime import datetime
-        current_year = datetime.now().year
-        listings = [l for l in listings if 2018 <= l.get("year", 0) <= current_year]
-        logger.info(f"After year filter: {len(listings)} listings")
-        return listings
+        return listings  
 
     def _parse_card(self, card) -> Optional[dict]:
         try:

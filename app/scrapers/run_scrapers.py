@@ -16,18 +16,28 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+def prepare_raw_dir():
+    raw_dir = Path("data/raw")
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Delete old JSONs
+    for f in raw_dir.glob("*.json"):
+        f.unlink()
+    
+    logger.info("data/raw cleared for fresh run")
 
 def run_all():
-    """Run all scrapers and collect results."""
+    
+    prepare_raw_dir() 
     results = {
         "run_at": datetime.now().isoformat(),
         "scrapers": {}
     }
 
     scrapers = [
-        ("sbt_japan", SBTJapanScraper(), 5),
-        ("beforward_japan", BeforwardScraper(), 5),
-        ("jiji_kenya", JijiKenyaScraper(), 10),
+        ("sbt_japan", SBTJapanScraper(), 10),
+        ("beforward_japan", BeforwardScraper(), 15),
+        ("jiji_kenya", JijiKenyaScraper(), 30),
     ]
 
     for name, scraper, pages in scrapers:
