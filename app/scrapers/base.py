@@ -1,3 +1,5 @@
+# app/scrapers/base.py
+
 import json
 import time
 import random
@@ -5,54 +7,72 @@ import logging
 from pathlib import Path
 from datetime import datetime, timezone
 from abc import ABC, abstractmethod
+from typing import Optional
 
 import httpx
+from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
 
 class BaseScraper(ABC):
-    source: str
-    base_url: str
-    country: str
-    currency: str
+    """Abstract base for all scrapers."""
+
+    source: str           # e.g. "sbt_japan", "cheki_kenya"
+    base_url: str         # e.g. "https://www.sbtjapan.com"
+    country: str          # "japan" or "kenya"
+    currency: str         # "JPY" or "KES"
+    
+    # Rate limiting
     delay_seconds: tuple = (2, 5)
 
+    # User agents to rotate
     USER_AGENTS = [
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_4)...",
-        "Mozilla/5.0 (X11; Linux x86_64)...",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     ]
 
     def __init__(self, output_dir: str = "data/raw"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.batch_id = f"{self.source}_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}"
-        self.client = httpx.Client(
-            headers=self._get_headers(),
-            timeout=30,
-            follow_redirects=True,
-        )
+        self._client: Optional[httpx.Client] = None
+
+    @property
+    def client(self) -> httpx.Client:
+        """Lazy-init HTTP client with session reuse."""
+        if self._client is None:
+            self._client = httpx.Client(
+                headers=self._get_headers(),
+                timeout=30,
+                follow_redirects=True,
+            )
+        return self._client
 
     def _get_headers(self) -> dict:
         return {
             "User-Agent": random.choice(self.USER_AGENTS),
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
             "Accept-Language": "en-US,en;q=0.5",
+            "Accept-Encoding": "gzip, deflate, br",
+            "DNT": "1",
             "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
         }
 
     def _delay(self):
+        """Random delay to be polite."""
         time.sleep(random.uniform(*self.delay_seconds))
 
-    def _fetch(self, url: str, **kwargs) -> httpx.Response:
-        """GET with retry and polite delay."""
+    def _fetch(self, url: str) -> httpx.Response:
+        """Make HTTP GET request with retry logic."""
         max_retries = 3
         for attempt in range(max_retries):
             try:
                 self._delay()
                 logger.info(f"[{self.source}] GET {url} (attempt {attempt + 1})")
-                response = self.client.get(url, **kwargs)
+                response = self.client.get(url)
                 response.raise_for_status()
                 return response
             except httpx.HTTPStatusError as e:
@@ -68,38 +88,55 @@ class BaseScraper(ABC):
                     raise
         raise RuntimeError("Max retries exceeded")
 
-    def _save_raw(self, listings: list[dict]):
+    def _get(self, url: str) -> Optional[httpx.Response]:
+        """Alias for _fetch — matches BE FORWARD scraper style."""
+        try:
+            return self._fetch(url)
+        except Exception as e:
+            logger.error(f"GET failed: {e}")
+            return None
+
+    def _parse_html(self, response: httpx.Response) -> BeautifulSoup:
+        """Parse response into BeautifulSoup object."""
+        return BeautifulSoup(response.text, "html.parser")
+
+    def _save_raw(self, data: list[dict]):
+        """Save scraped listings as JSON."""
         filename = f"{self.batch_id}.json"
         filepath = self.output_dir / filename
         
-        data = {
+        payload = {
             "batch_id": self.batch_id,
             "source": self.source,
             "country": self.country,
             "currency": self.currency,
             "scraped_at": datetime.now(timezone.utc).isoformat(),
-            "count": len(listings),
-            "listings": listings,
+            "count": len(data),
+            "listings": data,
         }
         
         with open(filepath, "w") as f:
-            json.dump(data, f, indent=2, default=str)
-        logger.info(f"Saved {len(listings)} listings to {filepath}")
+            json.dump(payload, f, indent=2, default=str)
+        logger.info(f"Saved {len(data)} listings to {filepath}")
         return filepath
 
     @abstractmethod
     def scrape_listings(self, pages: int = 5) -> list[dict]:
+        """Scrape car listings. Returns list of dicts matching RawListing columns."""
         ...
 
     def run(self, pages: int = 5) -> list[dict]:
-        logger.info(f"Starting {self.source} ({pages} pages)...")
+        """Main entry point: scrape and save."""
+        logger.info(f"Starting {self.source} scraper ({pages} pages)...")
         listings = self.scrape_listings(pages=pages)
         self._save_raw(listings)
-        logger.info(f"Done: {len(listings)} listings")
+        logger.info(f"Finished {self.source}: {len(listings)} listings scraped.")
         return listings
 
     def close(self):
-        self.client.close()
+        """Close HTTP client."""
+        if self._client:
+            self._client.close()
 
     def __enter__(self):
         return self

@@ -4,7 +4,7 @@ import re
 import logging
 from playwright.sync_api import sync_playwright
 
-from app.scrapers.base import BaseScraper
+from base import BaseScraper
 
 logger = logging.getLogger(__name__)
 
