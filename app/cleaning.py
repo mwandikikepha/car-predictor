@@ -139,13 +139,14 @@ def clean_listing(raw: dict) -> dict | None:
     mileage_km = raw.get("mileage")
     
     # Price conversions
+  
     price_original = raw.get("price")
     original_currency = raw.get("currency", "USD")
-    
-    if original_currency.upper() == "USD":
+
+    if original_currency.upper() in ("USD", "US$"):
         price_usd = price_original
         price_kes = price_original * USD_TO_KES if price_original else None
-    elif original_currency.upper() == "KES":
+    elif original_currency.upper() in ("KES", "KSH"):
         price_kes = price_original
         price_usd = price_original / USD_TO_KES if price_original else None
     else:
@@ -160,26 +161,23 @@ def clean_listing(raw: dict) -> dict | None:
     price_per_km = price_usd / mileage_km if mileage_km and mileage_km > 0 else None
     
     cleaned = {
-        "_id": None, 
-        "batch_id": raw.get("batch_id", "unknown"),
-        "source": raw.get("source", "unknown"),
-        "make": make,
-        "model": raw.get("model"),
-        "year": year,
-        "price_usd": price_usd,
-        "price_kes": price_kes,
-        "price_original": price_original,
-        "original_currency": original_currency,
-        "mileage_km": mileage_km,
-        "engine_size_cc": engine_size_cc,
-        "fuel_type": normalize_fuel(raw.get("fuel_type")),
-        "transmission": normalize_transmission(raw.get("transmission")),
-        "body_type": raw.get("body_type"),
-        "color": raw.get("body_color"),
-        "drive_type": raw.get("drive_type"),
-        "car_age": car_age,
-        "price_per_km": price_per_km,
-        "is_import": raw.get("country") == "japan",
+    "_id": None,
+    "source": raw.get("source", "unknown"),
+    "make": make,
+    "model": raw.get("model"),
+    "year": year,
+    "price_usd": price_usd,
+    "price_kes": price_kes,
+    "price_original": price_original,
+    "original_currency": original_currency,
+    "mileage_km": raw.get("mileage"),
+    "engine_size_cc": engine_size_cc,
+    "fuel_type": normalize_fuel(raw.get("fuel_type")),
+    "transmission": normalize_transmission(raw.get("transmission")),
+    "drive_type": raw.get("drive_type"),  # Keep
+    "car_age": car_age,
+    "price_per_km": price_per_km,
+    "is_import": raw.get("country") == "japan",
     }
     
     # Generate ID

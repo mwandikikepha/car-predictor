@@ -36,22 +36,17 @@ class RawListing(Base):
         Index("idx_raw_source_url", "source", "make", "model", "year"),
     )
 
-
 class CleanedListing(Base):
     __tablename__ = "cleaned_listings"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    raw_id = Column(Integer, nullable=True)  # link back to raw
-    batch_id = Column(String(50), nullable=False, index=True)
-
-    # Normalized fields
-    _id = Column(String(100), unique=True, nullable=False)  
+    _id = Column(String(100), unique=True, nullable=False)
     source = Column(String(50), nullable=False)
 
     make = Column(String(100), nullable=False, index=True)
     model = Column(String(100), nullable=False, index=True)
     year = Column(Integer, nullable=False)
-    price_usd = Column(Float, nullable=False)  
+    price_usd = Column(Float, nullable=False)
     price_kes = Column(Float)
     price_original = Column(Float)
     original_currency = Column(String(10))
@@ -59,14 +54,12 @@ class CleanedListing(Base):
     engine_size_cc = Column(Integer)
     fuel_type = Column(String(50))
     transmission = Column(String(50))
-    body_type = Column(String(50))
-    color = Column(String(50))
-    drive_type = Column(String(50))
+    drive_type = Column(String(50))  # Keep
 
     # Metadata
-    car_age = Column(Integer)  
+    car_age = Column(Integer)
     price_per_km = Column(Float)
-    is_import = Column(Boolean, default=True)  
+    is_import = Column(Boolean, default=True)
 
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

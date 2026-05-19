@@ -50,7 +50,6 @@ def insert_listings(session: Session, listings: list[dict]):
         try:
             db_listing = CleanedListing(
                 _id=listing["_id"],
-                batch_id=listing.get("batch_id", "unknown"),
                 source=listing["source"],
                 make=listing["make"],
                 model=listing["model"],
@@ -63,8 +62,6 @@ def insert_listings(session: Session, listings: list[dict]):
                 engine_size_cc=listing.get("engine_size_cc"),
                 fuel_type=listing.get("fuel_type"),
                 transmission=listing.get("transmission"),
-                body_type=listing.get("body_type"),
-                color=listing.get("body_color"),  # body_color → color
                 drive_type=listing.get("drive_type"),
                 car_age=listing.get("car_age"),
                 price_per_km=listing.get("price_per_km"),
