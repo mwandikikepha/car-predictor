@@ -1,12 +1,16 @@
 # app/scrapers/kenya_jiji.py
 
 import re
+import time
+import random
 import logging
 from playwright.sync_api import sync_playwright
 
 from base import BaseScraper
 
 logger = logging.getLogger(__name__)
+
+_YEAR_RE = re.compile(r'^20(?:[0-2]\d)$')
 
 
 class JijiKenyaScraper(BaseScraper):
@@ -15,33 +19,49 @@ class JijiKenyaScraper(BaseScraper):
     country = "kenya"
     currency = "KES"
 
-    def scrape_listings(self, pages: int = 5) -> list[dict]:
+    def scrape_listings(self, pages: int = 25) -> list[dict]:
         listings = []
 
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
+            context = browser.new_context(
+                user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            )
+            list_page = context.new_page()
+            detail_page = context.new_page()
 
             for pg in range(1, pages + 1):
                 url = f"{self.base_url}/cars?page={pg}"
                 logger.info(f"Scraping page {pg}: {url}")
 
                 try:
-                    page.goto(url, wait_until="load", timeout=30000)
-                    page.wait_for_timeout(3000)
+                    list_page.goto(url, wait_until="networkidle", timeout=60000)
+                    list_page.wait_for_timeout(2000)
 
-                    cards = page.query_selector_all(".js-advert-list-item")
+                    cards = list_page.query_selector_all(".js-advert-list-item")
                     if not cards:
                         logger.info(f"No cards on page {pg}, stopping")
                         break
 
                     for card in cards:
                         try:
-                            listing = self._parse_card(card)
-                            if listing:
-                                listings.append(listing)
+                            basic = self._parse_card_basic(card)
+                            if not basic:
+                                continue
+                            
+                            detail = self._scrape_detail_page(detail_page, basic["url"])
+                            listing = {**basic, **detail}
+                            
+                            if not listing.get("make") or not listing.get("model"):
+                                continue
+                            if not listing.get("year") or not (1990 <= listing["year"] <= 2026):
+                                continue
+                            
+                            listings.append(listing)
+                            time.sleep(random.uniform(0.5, 1.0))
+                            
                         except Exception as e:
-                            logger.warning(f"Skipped card: {e}")
+                            logger.warning(f"Card error: {e}")
                             continue
 
                     logger.info(f"Page {pg}: {len(cards)} cards, {len(listings)} total")
@@ -54,153 +74,309 @@ class JijiKenyaScraper(BaseScraper):
 
         return listings
 
-    def _parse_card(self, card) -> dict | None:
-        card_text = card.inner_text()
+    def _parse_card_basic(self, card) -> dict | None:
+        try:
+            card_text = card.inner_text()
 
-        # Price
-        price = self._extract_price(card_text)
-        if not price:
+            price = self._extract_price(card_text)
+            if not price:
+                return None
+
+            link = card.query_selector('a[href*="/cars/"]')
+            if not link:
+                return None
+
+            href = link.get_attribute("href") or ""
+            href = href.split('?')[0]
+            url = href if href.startswith("http") else f"{self.base_url}{href}"
+
+            location, make, model, year, color, body_type = self._parse_url(href)
+
+            desc_el = card.query_selector("[class*=description], [class*=desc], [class*=title]")
+            description = desc_el.inner_text().strip() if desc_el else ""
+
+            img = card.query_selector("img")
+            image_url = None
+            if img:
+                image_url = img.get_attribute("data-src") or img.get_attribute("src")
+
+            transmission = self._extract_transmission(card_text)
+            source_type = self._extract_source_type(card_text)
+
+            return {
+                "source": self.source,
+                "country": self.country,
+                "currency": self.currency,
+                "batch_id": self.batch_id,
+                "make": make,
+                "model": model,
+                "year": year,
+                "price": price,
+                "url": url,
+                "image_url": image_url,
+                "location": location,
+                "transmission": transmission,
+                "body_type": body_type,
+                "color": color,
+                "is_imported": True if source_type == "Foreign Used" else (False if source_type == "Local Used" else None),
+                "description": description[:500] if description else None,
+            }
+
+        except Exception as e:
+            logger.debug(f"Basic parse error: {e}")
             return None
 
-        # Detail link
-        link = card.query_selector('a[href*="/cars/"][href$=".html"]')
-        if not link:
-            return None
-
-        href = link.get_attribute("href")
-        url = href if href.startswith("http") else f"{self.base_url}{href}"
-
-        # Parse URL for details: /mombasa-cbd/cars/honda-vezel-1-5-2wd-2020-blue-...html
-        location, make, model, year, color, body_type = self._parse_url(href)
-
-        # Description
-        desc_el = card.query_selector("[class*=description], [class*=desc], [class*=title]")
-        description = desc_el.inner_text().strip() if desc_el else ""
-
-        # Transmission
-        transmission = self._extract_transmission(card_text)
-
-        # Foreign or Local used
-        source_type = self._extract_source_type(card_text)
-
-        # Mileage from description
-        mileage = self._extract_mileage(description)
-
-        # Engine size
-        engine_size = self._extract_engine(description)
-
-        # Image
-        img = card.query_selector("img")
-        image_url = img.get_attribute("src") or img.get_attribute("data-src") if img else None
-
-        return {
-            "source": self.source,
-            "country": self.country,
-            "currency": self.currency,
-            "batch_id": self.batch_id,
-            "make": make,
-            "model": model,
-            "year": year,
-            "price": price,
-            "mileage": mileage,
+    def _scrape_detail_page(self, page, url: str) -> dict:
+        detail = {
+            "mileage": None,
             "mileage_unit": "km",
-            "engine_size": engine_size,
-            "fuel_type": self._extract_fuel(description),
-            "transmission": transmission,
-            "body_type": body_type,
-            "color": color,
-            "drive_type": self._extract_drive(description),
-            "url": url,
-            "image_url": image_url,
-            "location": location,
+            "engine_size": None,
+            "fuel_type": None,
+            "drive_type": None,
             "seller_type": None,
-            "is_imported": True if source_type == "Foreign Used" else (False if source_type == "Local Used" else None),
-            "description": description[:500] if description else None,
+            "trim": None,
+            "body_type": None,
         }
+        
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=30000)
+            page.wait_for_timeout(2500)
+            
+            # Click "Show more" if present
+            try:
+                show_more = page.query_selector("button:has-text('Show more'), button:has-text('Show More')")
+                if show_more:
+                    show_more.click()
+                    page.wait_for_timeout(500)
+            except:
+                pass
+            
+            # Get ALL text from the page — this is more reliable than specific selectors
+            full_text = page.inner_text("body")
+            
+            # Also get HTML for regex patterns
+            html = page.content()
+            
+            # --- MILEAGE ---
+            # Jiji shows mileage as "139284 km" or just "139284" in icon attributes
+            # Try multiple patterns
+            mileage_patterns = [
+                r'(\d{1,3}(?:,\d{3})+)\s*km',           # "139,284 km" or "139284 km"
+                r'Mileage[:\s]+(\d{1,3}(?:,\d{3})+)',   # "Mileage: 139,284"
+                r'([\d,]+)\s*(?:km|kilometers)',         # Any number before km
+            ]
+            for pattern in mileage_patterns:
+                m = re.search(pattern, full_text, re.IGNORECASE)
+                if m:
+                    detail["mileage"] = float(m.group(1).replace(",", ""))
+                    break
+            
+            # --- ENGINE SIZE ---
+            engine_patterns = [
+                r'(\d{3,4})\s*cc',                      # "1500cc" or "1500 cc"
+                r'(\d+\.?\d*)\s*[Ll]\s*(?:engine| petrol| diesel)',  # "1.5L engine"
+                r'Engine[:\s]+(\d{3,4})\s*cc',           # "Engine: 1500cc"
+                r'(\d{3,4})\s*(?:cc|CC)',                # "1500cc" anywhere
+            ]
+            for pattern in engine_patterns:
+                m = re.search(pattern, full_text, re.IGNORECASE)
+                if m:
+                    val = m.group(1)
+                    if '.' in val:
+                        # Convert liters to cc
+                        detail["engine_size"] = str(int(float(val) * 1000))
+                    else:
+                        detail["engine_size"] = val
+                    break
+            
+            # --- FUEL TYPE ---
+            fuel_patterns = [
+                (r'\bPetrol\b', 'Petrol'),
+                (r'\bDiesel\b', 'Diesel'),
+                (r'\bHybrid\b', 'Hybrid'),
+                (r'\bElectric\b', 'Electric'),
+            ]
+            for pattern, fuel in fuel_patterns:
+                if re.search(pattern, full_text, re.IGNORECASE):
+                    detail["fuel_type"] = fuel
+                    break
+            
+            # --- DRIVE TYPE ---
+            drive_patterns = [
+                (r'\b4WD\b|\b4x4\b', '4WD'),
+                (r'\bAWD\b|\bAll Wheel\b', 'AWD'),
+                (r'\b2WD\b|\bFWD\b|\bFront Wheel\b', '2WD'),
+                (r'\bRWD\b|\bRear Wheel\b', 'RWD'),
+            ]
+            for pattern, drive in drive_patterns:
+                if re.search(pattern, full_text, re.IGNORECASE):
+                    detail["drive_type"] = drive
+                    break
+            
+            # --- TRIM ---
+            trim_match = re.search(r'Trim[:\s]+([^\n]+)', full_text, re.IGNORECASE)
+            if trim_match:
+                detail["trim"] = trim_match.group(1).strip()
+            
+            # --- BODY TYPE ---
+            body_match = re.search(r'Body[:\s]+([^\n]+)', full_text, re.IGNORECASE)
+            if body_match:
+                detail["body_type"] = body_match.group(1).strip().title()
+            
+            # --- SELLER TYPE ---
+            if re.search(r'\bDealer\b', full_text, re.IGNORECASE):
+                detail["seller_type"] = "Dealer"
+            elif re.search(r'\bIndividual\b', full_text, re.IGNORECASE):
+                detail["seller_type"] = "Individual"
+
+        except Exception as e:
+            logger.warning(f"Detail scrape failed for {url}: {e}")
+        
+        return detail
+
+    def _extract_specs_from_table(self, page) -> dict:
+        """Extract specs from Jiji's definition list / table structure."""
+        specs = {}
+        
+        try:
+            # Strategy 1: Look for label-value pairs in the page
+            # Jiji uses various structures, try multiple approaches
+            
+            # Approach A: Direct dt/dd or label/value pairs
+            rows = page.query_selector_all("""
+                .b-advert-attributes__item, 
+                [class*='attribute'],
+                dl > div,
+                tr,
+                [class*='spec-row'],
+                [class*='detail-row']
+            """)
+            
+            for row in rows:
+                try:
+                    # Try to find key and value elements
+                    key_el = (
+                        row.query_selector("dt, .b-advert-attributes__key, [class*='key'], [class*='label'], th") 
+                        or row.query_selector(":first-child")
+                    )
+                    val_el = (
+                        row.query_selector("dd, .b-advert-attributes__value, [class*='value'], td")
+                        or row.query_selector(":last-child")
+                    )
+                    
+                    if key_el and val_el:
+                        key = key_el.inner_text().strip().lower().replace(":", "").replace(" of manufacture", "")
+                        val = val_el.inner_text().strip()
+                        if key and val and val != "-":
+                            specs[key] = val
+                            
+                except Exception:
+                    continue
+            
+            # Approach B: Look for text patterns if structured elements fail
+            if not specs:
+                html = page.content()
+                text = page.inner_text("body")
+                
+                # Extract common patterns from full text
+                patterns = [
+                    (r'(?:make|brand)[\s:]+([a-z]+)', 'make'),
+                    (r'(?:model)[\s:]+([^\n]+)', 'model'),
+                    (r'(?:year|year of manufacture)[\s:]+(\d{4})', 'year'),
+                    (r'(?:trim)[\s:]+([^\n]+)', 'trim'),
+                    (r'(?:body|body type)[\s:]+([^\n]+)', 'body'),
+                    (r'(?:drivetrain|drive type)[\s:]+([^\n]+)', 'drivetrain'),
+                    (r'(?:engine size|displacement)[\s:]+([\d,]+)\s*cc', 'engine size'),
+                    (r'(?:fuel type|fuel)[\s:]+([^\n]+)', 'fuel type'),
+                    (r'(?:mileage)[\s:]+([\d,]+)\s*km', 'mileage'),
+                    (r'(?:seller type|seller)[\s:]+([^\n]+)', 'seller type'),
+                ]
+                
+                for pattern, key in patterns:
+                    m = re.search(pattern, text, re.IGNORECASE)
+                    if m:
+                        specs[key] = m.group(1).strip()
+
+        except Exception as e:
+            logger.debug(f"Specs extraction error: {e}")
+        
+        return specs
+
+    def _get_description_text(self, page) -> str:
+        """Get the full description text from the detail page."""
+        try:
+            # Try multiple description selectors
+            selectors = [
+                "[class*='description']",
+                "[class*='desc']", 
+                "[class*='about']",
+                "[class*='details-text']",
+                "article",
+                ".b-advert__description"
+            ]
+            
+            for sel in selectors:
+                el = page.query_selector(sel)
+                if el:
+                    text = el.inner_text().strip()
+                    if len(text) > 20:  # Must be substantial
+                        return text
+            
+            # Fallback: body text
+            return page.inner_text("body")[:2000]
+            
+        except Exception:
+            return ""
 
     def _extract_price(self, text: str) -> float | None:
-        """Extract price like 'KSh 4,900,000'."""
         match = re.search(r"KSh\s*([\d,]+)", text)
         if match:
             return float(match.group(1).replace(",", ""))
         return None
 
     def _parse_url(self, href: str) -> tuple:
-        """
-        Parse: /mombasa-cbd/cars/honda-vezel-1-5-2wd-2020-blue-...html
-        Returns: (location, make, model, year, color, body_type)
-        """
-        location = None
-        make = None
-        model = None
-        year = None
-        color = None
-        body_type = None
+        location = make = model = year = color = body_type = None
 
-        # Extract location (first segment)
         parts = href.strip("/").split("/")
-        if len(parts) > 0 and parts[0] != "cars":
+        if parts and parts[0] != "cars":
             location = parts[0].replace("-", " ").title()
 
-        # Extract car details from last segment
         car_part = parts[-1].replace(".html", "") if parts else ""
+        car_part = re.sub(r'-[a-z0-9]{8,}$', '', car_part, flags=re.IGNORECASE)
         segments = car_part.split("-")
 
-        # Common Kenyan car makes
-        makes = ["toyota", "nissan", "honda", "mazda", "subaru", "mercedes", "bmw", "audi",
-                 "volkswagen", "suzuki", "mitsubishi", "isuzu", "land", "range", "lexus", "jeep",
-                 "ford", "hyundai", "kia", "peugeot", "volvo", "daihatsu"]
+        body_types = {"sedan", "hatchback", "suv", "pickup", "van", "wagon", "coupe",
+                      "minivan", "convertible", "truck", "bus"}
+        colors = {"white", "black", "silver", "grey", "gray", "blue", "red", "green",
+                  "yellow", "beige", "brown", "gold", "maroon", "pearl", "orange", "purple"}
 
-        # Common body types
-        body_types = ["sedan", "hatchback", "suv", "pickup", "van", "wagon", "coupe",
-                      "minivan", "convertible", "truck", "bus"]
-
-        # Common colors
-        colors = ["white", "black", "silver", "grey", "gray", "blue", "red", "green",
-                  "yellow", "beige", "brown", "gold", "maroon", "pearl", "orange", "purple"]
-
-        # Find make
+        year_idx = None
         for i, seg in enumerate(segments):
-            if seg.lower() in makes:
-                make = seg
-                # Model is next segments until we hit a year or other identifiable marker
-                model_parts = []
-                for j in range(i + 1, len(segments)):
-                    s = segments[j]
-                    if s.isdigit() and len(s) == 4:
-                        year = int(s)
-                        break
-                    elif s.lower() in body_types:
-                        body_type = s.capitalize()
-                        break
-                    elif s.lower() in colors:
-                        break
-                    else:
-                        model_parts.append(s)
-                if make.lower() == "land" and model_parts and model_parts[0].lower() in ["cruiser", "rover"]:
-                    make = f"Land {model_parts.pop(0)}"
-                model = " ".join(model_parts).title() if model_parts else None
+            if _YEAR_RE.match(seg):
+                year = int(seg)
+                year_idx = i
                 break
 
-        # Find year
-        if not year:
-            for seg in segments:
-                if seg.isdigit() and len(seg) == 4 and 1980 <= int(seg) <= 2026:
-                    year = int(seg)
-                    break
+        if year_idx is not None and year_idx > 0:
+            make = segments[0].lower()
+            model_parts = segments[1:year_idx]
+            
+            if make == "land" and model_parts:
+                if model_parts[0].lower() in ("cruiser", "rover"):
+                    make = f"Land {model_parts.pop(0).title()}"
+            
+            model = " ".join(model_parts).title() if model_parts else None
+            
+        elif segments:
+            make = segments[0].lower()
+            model = " ".join(segments[1:]).title() if len(segments) > 1 else None
 
-        # Find color
-        for seg in reversed(segments):
-            if seg.lower() in colors:
+        for seg in segments:
+            seg_lower = seg.lower()
+            if seg_lower in colors and not color:
                 color = seg.capitalize()
-                break
-
-        # Find body type
-        if not body_type:
-            for seg in segments:
-                if seg.lower() in body_types:
-                    body_type = seg.capitalize()
-                    break
+            if seg_lower in body_types and not body_type:
+                body_type = seg.capitalize()
 
         return location, make, model, year, color, body_type
 
@@ -212,39 +388,8 @@ class JijiKenyaScraper(BaseScraper):
         return None
 
     def _extract_source_type(self, text: str) -> str | None:
-        """Foreign Used or Local Used."""
         if re.search(r"Foreign\s*Used", text, re.IGNORECASE):
             return "Foreign Used"
         if re.search(r"Local\s*Used", text, re.IGNORECASE):
             return "Local Used"
-        return None
-
-    def _extract_mileage(self, text: str) -> float | None:
-        """Extract mileage from description like '120,000 km' or '120000km'."""
-        match = re.search(r"([\d,]+)\s*km", text, re.IGNORECASE)
-        if match:
-            return float(match.group(1).replace(",", ""))
-        return None
-
-    def _extract_engine(self, text: str) -> str | None:
-        """Extract engine size like '2800cc' or '2.8 cc'."""
-        match = re.search(r"(\d[\d,]*)\s*cc", text, re.IGNORECASE)
-        if match:
-            return match.group(1).replace(",", "")
-        return None
-
-    def _extract_fuel(self, text: str) -> str | None:
-        fuels = ["Petrol", "Diesel", "Hybrid", "Electric"]
-        for fuel in fuels:
-            if re.search(rf"\b{fuel}\b", text, re.IGNORECASE):
-                return fuel
-        return None
-
-    def _extract_drive(self, text: str) -> str | None:
-        if re.search(r"\b4WD\b", text, re.IGNORECASE):
-            return "4WD"
-        if re.search(r"\bAWD\b", text, re.IGNORECASE):
-            return "AWD"
-        if re.search(r"\b2WD\b", text, re.IGNORECASE):
-            return "2WD"
         return None

@@ -1,14 +1,11 @@
-# loader.py
+# app/loader.py
 
 import json
 import logging
 from pathlib import Path
-from datetime import datetime
 import sys
 
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from sqlalchemy.orm import Session
 from database.connection import engine
 from database.models import CleanedListing
@@ -44,9 +41,29 @@ def clear_table(session: Session):
 
 
 def insert_listings(session: Session, listings: list[dict]):
-    """Insert listings into database."""
+    """Insert listings into database with validation."""
     count = 0
+    failed = 0
+    failed_reasons = []
+    
     for listing in listings:
+        # Pre-validate required fields
+        if not listing.get("make"):
+            failed += 1
+            failed_reasons.append(f"{listing.get('_id', 'unknown')}: missing make")
+            continue
+            
+        if not listing.get("model"):
+            failed += 1
+            failed_reasons.append(f"{listing.get('_id', 'unknown')}: missing model")
+            continue
+            
+        year = listing.get("year")
+        if not year or not (2010 <= year <= 2026):
+            failed += 1
+            failed_reasons.append(f"{listing.get('_id', 'unknown')}: invalid year={year}")
+            continue
+        
         try:
             db_listing = CleanedListing(
                 _id=listing["_id"],
@@ -75,23 +92,34 @@ def insert_listings(session: Session, listings: list[dict]):
                 logger.info(f"Inserted {count} listings...")
                 
         except Exception as e:
-            logger.warning(f"Failed to insert {listing.get('_id')}: {e}")
+            failed += 1
+            failed_reasons.append(f"{listing.get('_id', 'unknown')}: {str(e)[:80]}")
             session.rollback()
             continue
     
     session.commit()
     logger.info(f"Total inserted: {count}")
+    logger.info(f"Total failed: {failed}")
+    
+    if failed_reasons:
+        logger.warning(f"First 10 failures:")
+        for reason in failed_reasons[:10]:
+            logger.warning(f"  {reason}")
+    
+    return count, failed
 
 
 def run():
+    """Main loader: clear table, load cleaned data, insert."""
     listings = load_cleaned_data()
     logger.info(f"Loaded {len(listings)} cleaned listings")
     
     with Session(engine) as session:
         clear_table(session)
-        insert_listings(session, listings)
+        count, failed = insert_listings(session, listings)
     
     logger.info("Loader complete")
+    return count, failed
 
 
 if __name__ == "__main__":

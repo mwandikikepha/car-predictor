@@ -5,6 +5,13 @@ import json
 from pathlib import Path
 from datetime import datetime
 
+import sys
+
+# Force the path to be absolute (.resolve()) before jumping up to the parent
+project_root = str(Path(__file__).resolve().parent.parent)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from japan_sbt import SBTJapanScraper
 from japan_beforward import BeforwardScraper
 from kenya_jiji import JijiKenyaScraper
@@ -35,9 +42,9 @@ def run_all():
     }
 
     scrapers = [
-        ("sbt_japan", SBTJapanScraper(), 10),
-        ("beforward_japan", BeforwardScraper(), 15),
-        ("jiji_kenya", JijiKenyaScraper(), 30),
+        ("sbt_japan", SBTJapanScraper(), 20),
+        ("beforward_japan", BeforwardScraper(), 25),
+        ("jiji_kenya", JijiKenyaScraper(), 25),
     ]
 
     for name, scraper, pages in scrapers:
