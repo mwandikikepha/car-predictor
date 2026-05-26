@@ -11,6 +11,7 @@ sys.path.insert(0, str(project_root))
 
 from database.connection import engine
 from database.models import CleanedListing, ImportCost
+from config.settings import settings
 
 logging.basicConfig(
     level=logging.INFO,
@@ -20,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Exchange rate
-USD_TO_KES = 130.0
+USD_TO_KES = settings.USD_TO_KES
 
 # KRA Tax Rates (2026)
 IMPORT_DUTY_RATE = 0.25      # 25% of CIF
