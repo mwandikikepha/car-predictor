@@ -11,9 +11,7 @@ from api.schemas import CarResponse
 router = APIRouter(prefix="/cars", tags=["cars"])
 
 
-# ─────────────────────────────────────────────
-# STATIC / DROPDOWN ROUTES  (must be above /{car_id})
-# ─────────────────────────────────────────────
+
 
 @router.get("/makes", response_model=List[str])
 def get_makes(
@@ -23,7 +21,7 @@ def get_makes(
     ),
     db: Session = Depends(get_db),
 ):
-    """Unique car makes for dropdown, optionally scoped to import or local."""
+    
     where = []
     params: dict = {}
 
@@ -215,9 +213,6 @@ def stats_by_make(
     return [dict(r) for r in result.mappings().all()]
 
 
-# ─────────────────────────────────────────────
-# COLLECTION ROUTE
-# ─────────────────────────────────────────────
 
 @router.get("/", response_model=List[CarResponse])
 def list_cars(
@@ -237,10 +232,7 @@ def list_cars(
     offset: int = Query(0, ge=0),
     db: Session = Depends(get_db),
 ):
-    """
-    List cars with flexible filters.
-    Returns both Japan and Kenya listings unless is_import is specified.
-    """
+    
     where = ["1=1"]
     params: dict = {"limit": limit, "offset": offset}
 
@@ -292,13 +284,11 @@ def list_cars(
     return [dict(r) for r in result.mappings().all()]
 
 
-# ─────────────────────────────────────────────
-# SINGLE ITEM ROUTE  (must be last — catches anything)
-# ─────────────────────────────────────────────
+
 
 @router.get("/{car_id}", response_model=CarResponse)
 def get_car(car_id: int, db: Session = Depends(get_db)):
-    """Get a single car by integer ID."""
+    
     result = db.execute(
         text("""
             SELECT

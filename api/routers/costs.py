@@ -1,7 +1,4 @@
 # api/routers/costs.py
-#
-# FastAPI router — shapes service results into user-facing responses.
-# All query logic lives in app/comparison_service.py.
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
@@ -15,7 +12,7 @@ from app.comparison_service import get_comparisons, count_comparisons
 router = APIRouter(prefix="/costs", tags=["costs"])
 
 
-# ── Response schemas ──────────────────────────────────────────────
+
 
 class CarListing(BaseModel):
     id: int
@@ -64,7 +61,7 @@ class CostBreakdownResponse(BaseModel):
     items: List[CostBreakdownItem]
 
 
-# ── Formatting helpers ────────────────────────────────────────────
+
 
 def _fmt(value) -> Optional[str]:
     if value is None:
@@ -113,7 +110,7 @@ def _local_note(kenya_model: Optional[str], kenya_year: Optional[int],
 
 
 def _shape_row(row: dict) -> CompareResult:
-    """Convert a raw service row into a user-facing CompareResult."""
+    
     savings    = _f(row.get("savings_kes"))
     import_kes = _f(row.get("import_cost_kes"))
     kenya_kes  = _f(row.get("kenya_price_kes"))
@@ -150,8 +147,6 @@ def _shape_row(row: dict) -> CompareResult:
     )
 
 
-# ── Routes ────────────────────────────────────────────────────────
-
 @router.get("/compare", response_model=List[CompareResult])
 def compare_prices(
     make: Optional[str] = Query(None, description="e.g. Toyota, Subaru, Nissan"),
@@ -167,7 +162,7 @@ def compare_prices(
     offset: int = Query(0, ge=0),
     db: Session = Depends(get_db),
 ):
-    """Compare Japan import costs vs Kenyan local prices."""
+   
     if not make and not model:
         raise HTTPException(status_code=422,
                             detail="Provide at least one of: make, model")
@@ -202,7 +197,7 @@ def compare_count(
 
 @router.get("/{car_id}/breakdown", response_model=CostBreakdownResponse)
 def cost_breakdown(car_id: int, db: Session = Depends(get_db)):
-    """Full KRA cost breakdown as ordered line items for a receipt-style UI."""
+    
     result = db.execute(text("""
         SELECT
             cl.id, cl.make, cl.model, cl.year,

@@ -20,19 +20,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Exchange rate
+
 USD_TO_KES = settings.USD_TO_KES
 
-# KRA Tax Rates (2026)
-IMPORT_DUTY_RATE = 0.25      # 25% of CIF
-EXCISE_DUTY_RATE = 0.20      # 20% of (CIF + Import Duty)
-VAT_RATE = 0.16              # 16% of (CIF + Import Duty + Excise Duty)
-IDF_RATE = 0.035             # 3.5% of CIF
-RDL_RATE = 0.02              # 2% of CIF
+IMPORT_DUTY_RATE = 0.25  
+EXCISE_DUTY_RATE = 0.20      
+VAT_RATE = 0.16              
+IDF_RATE = 0.035             
+RDL_RATE = 0.02             
 
-# Fixed costs (KES)
-SHIPPING_USD = 1500.0        # Freight to Mombasa
-INSURANCE_RATE = 0.015      # 1.5% of FOB
+
+SHIPPING_USD = 1500.0       
+INSURANCE_RATE = 0.015      
 PORT_HANDLING_KES = 25000.0
 CLEARING_AGENT_KES = 35000.0
 REGISTRATION_KES = 15000.0
@@ -41,7 +40,6 @@ OTHER_FEES_KES = 10000.0
 
 
 def calculate_cif(fob_price_usd: float) -> dict:
-    """Calculate CIF (Cost, Insurance, Freight)."""
     insurance_usd = fob_price_usd * INSURANCE_RATE
     freight_usd = SHIPPING_USD
     cif_usd = fob_price_usd + insurance_usd + freight_usd
@@ -55,7 +53,6 @@ def calculate_cif(fob_price_usd: float) -> dict:
 
 
 def calculate_kra_taxes(cif_usd: float) -> dict:
-    """Calculate KRA taxes in KES."""
     cif_kes = cif_usd * USD_TO_KES
     
     import_duty_kes = cif_kes * IMPORT_DUTY_RATE
@@ -77,7 +74,6 @@ def calculate_kra_taxes(cif_usd: float) -> dict:
 
 
 def calculate_other_costs() -> dict:
-    """Calculate fixed costs in KES."""
     return {
         "port_handling_kes": PORT_HANDLING_KES,
         "clearing_agent_kes": CLEARING_AGENT_KES,
@@ -119,7 +115,6 @@ def process_all_imports():
         
         logger.info(f"Processing {len(japan_listings)} Japan listings")
         
-        # Clear old import costs
         session.query(ImportCost).delete()
         session.commit()
         logger.info("Cleared old import costs")

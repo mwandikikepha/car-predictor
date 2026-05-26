@@ -142,7 +142,7 @@ class JijiKenyaScraper(BaseScraper):
             page.goto(url, wait_until="domcontentloaded", timeout=30000)
             page.wait_for_timeout(2500)
             
-            # Click "Show more" if present
+            
             try:
                 show_more = page.query_selector("button:has-text('Show more'), button:has-text('Show More')")
                 if show_more:
@@ -151,15 +151,13 @@ class JijiKenyaScraper(BaseScraper):
             except:
                 pass
             
-            # Get ALL text from the page — this is more reliable than specific selectors
+            
             full_text = page.inner_text("body")
             
-            # Also get HTML for regex patterns
+            
             html = page.content()
             
-            # --- MILEAGE ---
-            # Jiji shows mileage as "139284 km" or just "139284" in icon attributes
-            # Try multiple patterns
+          
             mileage_patterns = [
                 r'(\d{1,3}(?:,\d{3})+)\s*km',           # "139,284 km" or "139284 km"
                 r'Mileage[:\s]+(\d{1,3}(?:,\d{3})+)',   # "Mileage: 139,284"
@@ -171,7 +169,7 @@ class JijiKenyaScraper(BaseScraper):
                     detail["mileage"] = float(m.group(1).replace(",", ""))
                     break
             
-            # --- ENGINE SIZE ---
+            
             engine_patterns = [
                 r'(\d{3,4})\s*cc',                      # "1500cc" or "1500 cc"
                 r'(\d+\.?\d*)\s*[Ll]\s*(?:engine| petrol| diesel)',  # "1.5L engine"
@@ -189,7 +187,7 @@ class JijiKenyaScraper(BaseScraper):
                         detail["engine_size"] = val
                     break
             
-            # --- FUEL TYPE ---
+           
             fuel_patterns = [
                 (r'\bPetrol\b', 'Petrol'),
                 (r'\bDiesel\b', 'Diesel'),
@@ -201,7 +199,7 @@ class JijiKenyaScraper(BaseScraper):
                     detail["fuel_type"] = fuel
                     break
             
-            # --- DRIVE TYPE ---
+            
             drive_patterns = [
                 (r'\b4WD\b|\b4x4\b', '4WD'),
                 (r'\bAWD\b|\bAll Wheel\b', 'AWD'),
@@ -213,17 +211,17 @@ class JijiKenyaScraper(BaseScraper):
                     detail["drive_type"] = drive
                     break
             
-            # --- TRIM ---
+            
             trim_match = re.search(r'Trim[:\s]+([^\n]+)', full_text, re.IGNORECASE)
             if trim_match:
                 detail["trim"] = trim_match.group(1).strip()
             
-            # --- BODY TYPE ---
+            
             body_match = re.search(r'Body[:\s]+([^\n]+)', full_text, re.IGNORECASE)
             if body_match:
                 detail["body_type"] = body_match.group(1).strip().title()
             
-            # --- SELLER TYPE ---
+            
             if re.search(r'\bDealer\b', full_text, re.IGNORECASE):
                 detail["seller_type"] = "Dealer"
             elif re.search(r'\bIndividual\b', full_text, re.IGNORECASE):
@@ -235,14 +233,11 @@ class JijiKenyaScraper(BaseScraper):
         return detail
 
     def _extract_specs_from_table(self, page) -> dict:
-        """Extract specs from Jiji's definition list / table structure."""
+        
         specs = {}
         
         try:
-            # Strategy 1: Look for label-value pairs in the page
-            # Jiji uses various structures, try multiple approaches
-            
-            # Approach A: Direct dt/dd or label/value pairs
+           
             rows = page.query_selector_all("""
                 .b-advert-attributes__item, 
                 [class*='attribute'],
@@ -254,7 +249,7 @@ class JijiKenyaScraper(BaseScraper):
             
             for row in rows:
                 try:
-                    # Try to find key and value elements
+                   
                     key_el = (
                         row.query_selector("dt, .b-advert-attributes__key, [class*='key'], [class*='label'], th") 
                         or row.query_selector(":first-child")
@@ -273,12 +268,12 @@ class JijiKenyaScraper(BaseScraper):
                 except Exception:
                     continue
             
-            # Approach B: Look for text patterns if structured elements fail
+            # Approach B: We for text patterns if structured elements fail
             if not specs:
                 html = page.content()
                 text = page.inner_text("body")
                 
-                # Extract common patterns from full text
+               
                 patterns = [
                     (r'(?:make|brand)[\s:]+([a-z]+)', 'make'),
                     (r'(?:model)[\s:]+([^\n]+)', 'model'),
@@ -303,9 +298,9 @@ class JijiKenyaScraper(BaseScraper):
         return specs
 
     def _get_description_text(self, page) -> str:
-        """Get the full description text from the detail page."""
+        
         try:
-            # Try multiple description selectors
+           
             selectors = [
                 "[class*='description']",
                 "[class*='desc']", 
@@ -322,7 +317,7 @@ class JijiKenyaScraper(BaseScraper):
                     if len(text) > 20:  # Must be substantial
                         return text
             
-            # Fallback: body text
+            
             return page.inner_text("body")[:2000]
             
         except Exception:

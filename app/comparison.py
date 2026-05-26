@@ -1,7 +1,4 @@
 # app/comparison.py
-#
-# CLI script — run directly to print comparison results to the terminal.
-# All query logic lives in comparison_service.py, not here.
 
 import sys
 from pathlib import Path
@@ -88,6 +85,6 @@ def print_comparisons(
 
 
 if __name__ == "__main__":
-    # Quick manual run — adjust filters as needed
+    
     print_comparisons(make="Toyota", limit=30)
     print_comparisons(make="Subaru", model="Forester", limit=20)

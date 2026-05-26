@@ -19,12 +19,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── Single source of truth: pulled from settings ──────────────────
 USD_TO_KES = settings.USD_TO_KES
 MIN_YEAR   = settings.MIN_YEAR
 MAX_YEAR   = settings.MAX_YEAR
 
-# ── Normalisation maps ────────────────────────────────────────────
+
 MAKE_NORMALIZE = {
     "toyota": "Toyota", "honda": "Honda", "nissan": "Nissan",
     "mazda": "Mazda", "subaru": "Subaru", "mitsubishi": "Mitsubishi",
@@ -53,7 +52,6 @@ TRANS_NORMALIZE = {
 }
 
 
-# ── Directory helpers ─────────────────────────────────────────────
 
 def prepare_cleaned_dir():
     cleaned_dir = Path("data/cleaned")
@@ -79,7 +77,6 @@ def load_raw_data(raw_dir: Path = Path("data/raw")) -> list[dict]:
     return listings
 
 
-# ── Field normalisers ─────────────────────────────────────────────
 
 def normalize_make(make: str | None) -> str | None:
     if not make:
@@ -99,17 +96,10 @@ def normalize_transmission(trans: str | None) -> str | None:
     return TRANS_NORMALIZE.get(trans.lower().strip(), trans.strip().title())
 
 
-# ── ID generation ─────────────────────────────────────────────────
+
 
 def generate_id(listing: dict) -> str:
-    """
-    Deterministic unique ID that avoids collisions between listings of
-    the same make/model/year by also hashing price + mileage.
-
-    Old bug: only source+make+model+year were hashed, so two Vitz 2019
-    listings from SBT at different prices got the same _id and one was
-    silently dropped by the dedup set.
-    """
+   
     make     = listing.get("make", "unknown")
     model    = listing.get("model", "unknown")
     year     = listing.get("year", 0)
@@ -124,24 +114,24 @@ def generate_id(listing: dict) -> str:
     return f"{source}-{make}-{clean_model}-{year}-{hash_suffix}"
 
 
-# ── Per-listing cleaner ───────────────────────────────────────────
+
 
 def clean_listing(raw: dict) -> dict | None:
     year = raw.get("year")
 
-    # ── Year validation: one filter, from settings ────────────────
+    
     if not year or not isinstance(year, int):
         return None
     if not (MIN_YEAR <= year <= MAX_YEAR):
         return None
 
-    # ── Required fields ───────────────────────────────────────────
+    
     make  = normalize_make(raw.get("make"))
     model = raw.get("model")
     if not make or not model:
         return None
 
-    # ── Engine size ───────────────────────────────────────────────
+   
     engine_size_cc = None
     engine_raw = raw.get("engine_size")
     if engine_raw:
@@ -149,10 +139,9 @@ def clean_listing(raw: dict) -> dict | None:
         if digits:
             engine_size_cc = int(digits)
 
-    # ── Mileage ───────────────────────────────────────────────────
     mileage_km = raw.get("mileage")
 
-    # ── Price conversions ─────────────────────────────────────────
+  
     price_original    = raw.get("price")
     original_currency = raw.get("currency", "USD").upper()
 
@@ -201,7 +190,7 @@ def clean_listing(raw: dict) -> dict | None:
     return cleaned
 
 
-# ── Main pipeline ─────────────────────────────────────────────────
+
 
 def clean_all(
     raw_dir:     Path = Path("data/raw"),
@@ -228,7 +217,7 @@ def clean_all(
 
         cleaned_listings.append(cleaned)
 
-    # ── Save ──────────────────────────────────────────────────────
+    
     output_file = cleaned_dir / f"cleaned_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(
@@ -246,7 +235,6 @@ def clean_all(
             default=str,
         )
 
-    # ── Stats ─────────────────────────────────────────────────────
     logger.info(f"Year filter applied: {MIN_YEAR}–{MAX_YEAR}")
     logger.info(f"Exchange rate used:  1 USD = {USD_TO_KES} KES")
     logger.info(f"Cleaned listings:    {len(cleaned_listings)}")

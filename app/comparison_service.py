@@ -1,8 +1,5 @@
 # app/comparison_service.py
-#
-# Single source of truth for all comparison logic.
-# Both the CLI (comparison.py) and the API router (costs.py) call this.
-# Neither should contain SQL or business logic that the other doesn't have.
+
 
 from typing import Optional
 from sqlalchemy.orm import Session
@@ -23,21 +20,8 @@ def get_comparisons(
     limit: int = 100,
     offset: int = 0,
 ) -> list[dict]:
-    """
-    Return Japan import vs Kenya local price comparisons.
-
-    Fallback cascade per Japan car (best to worst match):
-      1. make + model + exact year
-      2. ±1 year
-      3. ±10% engine size
-      4. Any fuel type / transmission
-      5. Any mileage
-
-    All monetary values are in KES.
-    The raw dict keys are internal — callers (CLI or router) are responsible
-    for shaping the output for their audience.
-    """
-    # Build WHERE clause for Japan cars
+    
+    
     japan_conditions = ["cl.is_import = true"]
     params: dict = {
         "year":         year,

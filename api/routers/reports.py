@@ -17,7 +17,7 @@ def top_deals(
     limit: int = Query(20, ge=1, le=100),
     db: Session = Depends(get_db)
 ):
-    """Get top import savings opportunities."""
+   
     
     where = "cl.is_import = true"
     params = {"limit": limit}

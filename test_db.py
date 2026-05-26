@@ -8,6 +8,6 @@ engine = create_engine(settings.DB_URL)
 try:
     with engine.connect() as conn:
         result = conn.execute(text("SELECT 1"))
-        print("✅ Connected. Database is reachable.")
+        print("Connected. Database is reachable.")
 except Exception as e:
-    print(f"❌ Connection failed: {e}")
+    print(f"Connection failed: {e}")

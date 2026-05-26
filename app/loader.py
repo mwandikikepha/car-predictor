@@ -19,13 +19,13 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── Single source of truth: pulled from settings ──────────────────
+
 MIN_YEAR = settings.MIN_YEAR
 MAX_YEAR = settings.MAX_YEAR
 
 
 def load_cleaned_data(cleaned_dir: Path = Path("data/cleaned")) -> list[dict]:
-    """Load the most recently written cleaned JSON file."""
+   
     json_files = list(cleaned_dir.glob("cleaned_*.json"))
     if not json_files:
         raise FileNotFoundError(
@@ -45,14 +45,6 @@ def clear_table(session: Session):
 
 
 def insert_listings(session: Session, listings: list[dict]) -> tuple[int, int]:
-    """
-    Insert cleaned listings into the database.
-
-    Validation here is intentionally minimal — cleaning.py owns the
-    business rules.  The loader only enforces hard database constraints
-    (required fields, year sanity check against settings) so that a
-    misconfigured cleaning run cannot silently insert garbage.
-    """
     count  = 0
     failed = 0
     failed_reasons: list[str] = []

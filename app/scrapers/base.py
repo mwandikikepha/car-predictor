@@ -18,15 +18,15 @@ logger = logging.getLogger(__name__)
 class BaseScraper(ABC):
     """Abstract base for all scrapers."""
 
-    source: str           # e.g. "sbt_japan", "cheki_kenya"
-    base_url: str         # e.g. "https://www.sbtjapan.com"
-    country: str          # "japan" or "kenya"
-    currency: str         # "JPY" or "KES"
+    source: str           
+    base_url: str         
+    country: str          
+    currency: str         
     
-    # Rate limiting
+    
     delay_seconds: tuple = (2, 5)
 
-    # User agents to rotate
+    
     USER_AGENTS = [
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
@@ -41,7 +41,7 @@ class BaseScraper(ABC):
 
     @property
     def client(self) -> httpx.Client:
-        """Lazy-init HTTP client with session reuse."""
+        
         if self._client is None:
             self._client = httpx.Client(
                 headers=self._get_headers(),
@@ -62,11 +62,11 @@ class BaseScraper(ABC):
         }
 
     def _delay(self):
-        """Random delay to be polite."""
+       
         time.sleep(random.uniform(*self.delay_seconds))
 
     def _fetch(self, url: str) -> httpx.Response:
-        """Make HTTP GET request with retry logic."""
+        
         max_retries = 3
         for attempt in range(max_retries):
             try:
@@ -89,7 +89,7 @@ class BaseScraper(ABC):
         raise RuntimeError("Max retries exceeded")
 
     def _get(self, url: str) -> Optional[httpx.Response]:
-        """Alias for _fetch — matches BE FORWARD scraper style."""
+       
         try:
             return self._fetch(url)
         except Exception as e:
@@ -97,11 +97,11 @@ class BaseScraper(ABC):
             return None
 
     def _parse_html(self, response: httpx.Response) -> BeautifulSoup:
-        """Parse response into BeautifulSoup object."""
+        
         return BeautifulSoup(response.text, "html.parser")
 
     def _save_raw(self, data: list[dict]):
-        """Save scraped listings as JSON."""
+        
         filename = f"{self.batch_id}.json"
         filepath = self.output_dir / filename
         
@@ -122,11 +122,11 @@ class BaseScraper(ABC):
 
     @abstractmethod
     def scrape_listings(self, pages: int = 5) -> list[dict]:
-        """Scrape car listings. Returns list of dicts matching RawListing columns."""
+        
         ...
 
     def run(self, pages: int = 5) -> list[dict]:
-        """Main entry point: scrape and save."""
+        
         logger.info(f"Starting {self.source} scraper ({pages} pages)...")
         listings = self.scrape_listings(pages=pages)
         self._save_raw(listings)
@@ -134,7 +134,7 @@ class BaseScraper(ABC):
         return listings
 
     def close(self):
-        """Close HTTP client."""
+        
         if self._client:
             self._client.close()
 

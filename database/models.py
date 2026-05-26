@@ -29,7 +29,7 @@ class RawListing(Base):
     drive_type = Column(String(50))  
     location = Column(String(200))  
 
-    # Raw JSON fallback for extra fields
+    
     raw_data = Column(Text)
 
     __table_args__ = (
@@ -56,7 +56,7 @@ class CleanedListing(Base):
     transmission = Column(String(50))
     drive_type = Column(String(50))  # Keep
 
-    # Metadata
+    
     car_age = Column(Integer)
     price_per_km = Column(Float)
     is_import = Column(Boolean, default=True)
