@@ -1,0 +1,20 @@
+{
+  "run_at": "2026-05-26T20:44:35.339147",
+  "scrapers": {
+    "sbt_japan": {
+      "status": "success",
+      "listings": 6200,
+      "batch_id": "sbt_japan_20260526_174435"
+    },
+    "beforward_japan": {
+      "status": "success",
+      "listings": 2619,
+      "batch_id": "beforward_japan_20260526_174435"
+    },
+    "jiji_kenya": {
+      "status": "success",
+      "listings": 967,
+      "batch_id": "jiji_kenya_20260526_174435"
+    }
+  }
+}

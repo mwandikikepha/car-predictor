@@ -44,7 +44,7 @@ def run_all():
     scrapers = [
         ("sbt_japan", SBTJapanScraper(), 200),
         ("beforward_japan", BeforwardScraper(), 200),
-        ("jiji_kenya", JijiKenyaScraper(), 100),
+        ("jiji_kenya", JijiKenyaScraper(), 120),
     ]
 
     for name, scraper, pages in scrapers:
