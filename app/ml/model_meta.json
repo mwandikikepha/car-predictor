@@ -1,0 +1,225 @@
+{
+  "trained_at": "2026-06-02T14:12:42.599486",
+  "n_train": 2294,
+  "n_test": 574,
+  "n_features": 121,
+  "training_columns": [
+    "year",
+    "mileage_km",
+    "engine_size_cc",
+    "car_age",
+    "mileage_per_year",
+    "mileage_intensity",
+    "make_Audi",
+    "make_Bmw",
+    "make_Daihatsu",
+    "make_Fiat",
+    "make_Ford",
+    "make_Honda",
+    "make_Isuzu",
+    "make_Jeep",
+    "make_Lexus",
+    "make_Mazda",
+    "make_Mercedes-Benz",
+    "make_Mitsubishi",
+    "make_Nissan",
+    "make_Other",
+    "make_Peugeot",
+    "make_Subaru",
+    "make_Suzuki",
+    "make_Toyota",
+    "make_Volkswagen",
+    "model_1 Series",
+    "model_3 Series",
+    "model_3008",
+    "model_500",
+    "model_Alphard",
+    "model_Alphard Hybrid",
+    "model_Aqua",
+    "model_Aura",
+    "model_C Class",
+    "model_Clipper Van",
+    "model_Corolla Axio",
+    "model_Corolla Fielder",
+    "model_Corolla Touring",
+    "model_Crown Hybrid",
+    "model_Cx 8",
+    "model_Cx5 Xd",
+    "model_Dayz",
+    "model_Delica D5",
+    "model_Esquire",
+    "model_Every",
+    "model_Fit Hybrid",
+    "model_Forester",
+    "model_Harrier",
+    "model_Harrier Hybrid",
+    "model_Harrier Z",
+    "model_Hiace Van",
+    "model_Hiace Wagon",
+    "model_Hijet Cargo",
+    "model_Hilux",
+    "model_Hustler",
+    "model_Jimny",
+    "model_Jimny Nomade",
+    "model_Jimny Sierra",
+    "model_Land Cruiser",
+    "model_Mini",
+    "model_Mini Clubman",
+    "model_Move Canbus",
+    "model_N Box",
+    "model_Navara",
+    "model_Noah",
+    "model_Note",
+    "model_Nv200Vanette Van",
+    "model_Nv350Caravan Dx",
+    "model_Nx",
+    "model_Other",
+    "model_Prius",
+    "model_Probox Van",
+    "model_Raize",
+    "model_Ranger",
+    "model_Rav4",
+    "model_Regiusace Van",
+    "model_Renegade",
+    "model_Roomy",
+    "model_Roox",
+    "model_Serena",
+    "model_Shuttle Hybrid",
+    "model_Sienta",
+    "model_Spacia",
+    "model_Succeed Van",
+    "model_Swift",
+    "model_Tanto",
+    "model_Tanto Custom",
+    "model_Townace Van",
+    "model_Vellfire",
+    "model_Vellfire Hybrid",
+    "model_Vezel Hybrid",
+    "model_Vitz F",
+    "model_Voxy",
+    "model_Voxy Zs",
+    "model_Yaris",
+    "model_Yaris Cross",
+    "model_Yaris X",
+    "mileage_bucket_0-30k",
+    "mileage_bucket_30-60k",
+    "mileage_bucket_60-100k",
+    "mileage_bucket_100-150k",
+    "mileage_bucket_150-200k",
+    "mileage_bucket_200k-plus",
+    "fuel_Petrol",
+    "fuel_Diesel",
+    "fuel_Hybrid",
+    "fuel_Electric",
+    "fuel_Plug-in Hybrid",
+    "fuel_LPG",
+    "fuel_CNG",
+    "fuel_Unknown",
+    "trans_Automatic",
+    "trans_Manual",
+    "trans_CVT",
+    "trans_Semi-Automatic",
+    "trans_Unknown",
+    "source_sbt_japan",
+    "source_beforward_japan",
+    "source_carfromjapan",
+    "source_jct_japan",
+    "source_Unknown"
+  ],
+  "metrics": {
+    "r2": 0.856,
+    "mae": 2403.77,
+    "rmse": 3591.79,
+    "mape": 17.32,
+    "cv_r2_mean": 0.7728,
+    "cv_r2_std": 0.0591
+  },
+  "top_features": [
+    {
+      "feature": "engine_size_cc",
+      "importance": 0.08259999752044678
+    },
+    {
+      "feature": "car_age",
+      "importance": 0.04780000075697899
+    },
+    {
+      "feature": "year",
+      "importance": 0.046300001442432404
+    },
+    {
+      "feature": "mileage_km",
+      "importance": 0.03759999945759773
+    },
+    {
+      "feature": "make_Mazda",
+      "importance": 0.030700000002980232
+    },
+    {
+      "feature": "model_Navara",
+      "importance": 0.030300000682473183
+    },
+    {
+      "feature": "make_Audi",
+      "importance": 0.02979999966919422
+    },
+    {
+      "feature": "model_N Box",
+      "importance": 0.027400000020861626
+    },
+    {
+      "feature": "model_Land Cruiser",
+      "importance": 0.026900000870227814
+    },
+    {
+      "feature": "model_Renegade",
+      "importance": 0.025499999523162842
+    },
+    {
+      "feature": "make_Nissan",
+      "importance": 0.023900000378489494
+    },
+    {
+      "feature": "model_Vellfire Hybrid",
+      "importance": 0.023399999365210533
+    },
+    {
+      "feature": "make_Lexus",
+      "importance": 0.020600000396370888
+    },
+    {
+      "feature": "make_Suzuki",
+      "importance": 0.01730000041425228
+    },
+    {
+      "feature": "make_Toyota",
+      "importance": 0.01679999940097332
+    },
+    {
+      "feature": "model_Alphard",
+      "importance": 0.016699999570846558
+    },
+    {
+      "feature": "model_Hilux",
+      "importance": 0.016100000590085983
+    },
+    {
+      "feature": "model_Jimny Nomade",
+      "importance": 0.01510000042617321
+    },
+    {
+      "feature": "model_Hiace Van",
+      "importance": 0.014800000004470348
+    },
+    {
+      "feature": "model_Nx",
+      "importance": 0.014600000344216824
+    }
+  ],
+  "price_stats": {
+    "min": 4040.0,
+    "max": 60130.0,
+    "mean": 14700.54,
+    "median": 12665.0
+  }
+}

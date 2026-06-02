@@ -230,6 +230,7 @@ dependencies = [
     { name = "joblib" },
     { name = "lxml" },
     { name = "numpy" },
+    { name = "numpyencoder" },
     { name = "pandas" },
     { name = "playwright" },
     { name = "psycopg2-binary" },
@@ -255,6 +256,7 @@ requires-dist = [
     { name = "joblib", specifier = ">=1.5.3" },
     { name = "lxml", specifier = ">=6.1.0" },
     { name = "numpy", specifier = ">=2.4.4" },
+    { name = "numpyencoder", specifier = ">=0.3.2" },
     { name = "pandas", specifier = ">=3.0.3" },
     { name = "playwright", specifier = ">=1.59.0" },
     { name = "psycopg2-binary", specifier = ">=2.9.12" },
@@ -507,12 +509,34 @@ wheels = [
 ]
 
 [[package]]
+name = "numpyencoder"
+version = "0.3.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "packaging" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c4/0d/266647b8986a9d5ff10bdf50b5d77c90c03038f56132d34d51a59f1bbe56/numpyencoder-0.3.2.tar.gz", hash = "sha256:3107f51b2d90a053fea5e4075b024080c07bfabff0050e070ba8e90241734f16", size = 3284, upload-time = "2025-07-15T04:12:29.329Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/82/ee/372a5080e5185bb7ec685040c33be3845418341cb0764c7033f1e1cf02c6/numpyencoder-0.3.2-py3-none-any.whl", hash = "sha256:a5935afdbbc237c1b6c23b5c7bc0e77645a0bbd9ed5bbb1eb8449da75909699f", size = 3526, upload-time = "2025-07-15T04:12:28.552Z" },
+]
+
+[[package]]
 name = "nvidia-nccl-cu12"
 version = "2.30.4"
 source = { registry = "https://pypi.org/simple" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/bc/2b/1757b6b74ee241de5efee3f35487dcb33e09c07605254809c6ce36aeb783/nvidia_nccl_cu12-2.30.4-py3-none-manylinux_2_18_aarch64.whl", hash = "sha256:606fa9aa9215c00367d060188eb1a5bbd28396aff5e11b9200d99d1a6ab79a71", size = 300091935, upload-time = "2026-04-23T03:22:58.024Z" },
     { url = "https://files.pythonhosted.org/packages/6b/c3/0e45ff4dce8401f6ea7c25d80d75738813a47f5ae2691e2478f2fd1e5e93/nvidia_nccl_cu12-2.30.4-py3-none-manylinux_2_18_x86_64.whl", hash = "sha256:040974b261edec4b8b793e59e92ab7176fe4ab4bc61b800f9f3bfaeec2d436f3", size = 300164158, upload-time = "2026-04-23T03:23:19.589Z" },
+]
+
+[[package]]
+name = "packaging"
+version = "26.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d7/f1/e7a6dd94a8d4a5626c03e4e99c87f241ba9e350cd9e6d75123f992427270/packaging-26.2.tar.gz", hash = "sha256:ff452ff5a3e828ce110190feff1178bb1f2ea2281fa2075aadb987c2fb221661", size = 228134, upload-time = "2026-04-24T20:15:23.917Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/df/b2/87e62e8c3e2f4b32e5fe99e0b86d576da1312593b39f47d8ceef365e95ed/packaging-26.2-py3-none-any.whl", hash = "sha256:5fc45236b9446107ff2415ce77c807cee2862cb6fac22b8a73826d0693b0980e", size = 100195, upload-time = "2026-04-24T20:15:22.081Z" },
 ]
 
 [[package]]
