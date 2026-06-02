@@ -1,3 +1,4 @@
+
 # Python-generated files
 __pycache__/
 *.py[oc]
@@ -18,6 +19,25 @@ wheels/
 
 # Logs and databases
 *.log
-*.sqlite3   
+*.sqlite3
 
+# Data files
 data/
+
+# ML models and metadata
+app/ml/model.joblib
+app/ml/model_meta.json
+app/ml/encoders.json
+
+# Scrapers 
+app/scrapers/japan_beforward.py
+app/scrapers/japan_sbt.py
+app/scrapers/kenya_jiji.py
+app/scrapers/kenya_autocheck.py
+app/scrapers/run_scrapers.py
+
+# OS
+.DS_Store
+Thumbs.db
+EOF
+echo ".gitignore updated"
