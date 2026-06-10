@@ -1,6 +1,5 @@
 # app/comparison_service.py
 
-
 from typing import Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import text
@@ -20,7 +19,6 @@ def get_comparisons(
     limit: int = 100,
     offset: int = 0,
 ) -> list[dict]:
-    
     
     japan_conditions = ["cl.is_import = true"]
     params: dict = {
@@ -76,7 +74,6 @@ def get_comparisons(
             ic.total_landed_cost_kes  AS import_cost_kes,
             ic.usd_to_kes,
 
-            -- How closely this car matches the requested filters (lower = better)
             CASE
                 WHEN :year IS NULL                               THEN 0
                 WHEN cl.year = :year                            THEN 0
@@ -110,7 +107,6 @@ def get_comparisons(
         WHERE {japan_where}
     ),
 
-    -- Best Kenya match for each Japan car
     kenya_matches AS (
         SELECT
             j.id AS japan_id,
@@ -133,7 +129,10 @@ def get_comparisons(
         JOIN cleaned_listings k
             ON  k.make      = j.make
             AND k.is_import = false
-            AND k.model ILIKE :model
+            AND (
+                k.model ILIKE '%' || j.model || '%'
+                OR j.model ILIKE '%' || k.model || '%'
+            )
     ),
 
     best_kenya AS (SELECT * FROM kenya_matches WHERE rank = 1)
@@ -157,20 +156,17 @@ def get_comparisons(
         k.kenya_year,
         k.kenya_mileage,
 
-        -- Verdict
         CASE
             WHEN k.kenya_price_kes IS NULL             THEN 'NO_LOCAL_DATA'
             WHEN j.import_cost_kes < k.kenya_price_kes THEN 'IMPORT_CHEAPER'
             ELSE 'LOCAL_CHEAPER'
         END AS recommendation,
 
-        -- Savings (positive = import saves money, negative = buying local saves money)
         CASE
             WHEN k.kenya_price_kes IS NULL THEN NULL
             ELSE ROUND((k.kenya_price_kes - j.import_cost_kes)::numeric, 0)
         END AS savings_kes,
 
-        -- Match quality score (lower = closer to what was requested)
         (j.year_score + j.engine_score + j.fuel_score + j.trans_score + j.mileage_score)
             AS match_score
 
@@ -196,10 +192,6 @@ def count_comparisons(
     year_min: Optional[int] = None,
     year_max: Optional[int] = None,
 ) -> int:
-    """
-    Count Japan listings matching the given filters.
-    Used by the API to support pagination.
-    """
     conditions = ["cl.is_import = true"]
     params: dict = {}
 
