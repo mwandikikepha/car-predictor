@@ -1,0 +1,211 @@
+{
+  "trained_at": "2026-06-11T10:05:40.524683",
+  "n_train": 1852,
+  "n_test": 464,
+  "n_features": 107,
+  "training_columns": [
+    "year",
+    "mileage_km",
+    "engine_size_cc",
+    "car_age",
+    "mileage_per_year",
+    "mileage_intensity",
+    "make_Bmw",
+    "make_Daihatsu",
+    "make_Ford",
+    "make_Honda",
+    "make_Isuzu",
+    "make_Land Rover",
+    "make_Lexus",
+    "make_Mazda",
+    "make_Mercedes-Benz",
+    "make_Mitsubishi",
+    "make_Nissan",
+    "make_Other",
+    "make_Subaru",
+    "make_Suzuki",
+    "make_Toyota",
+    "make_Volkswagen",
+    "model_Alphard",
+    "model_Alphard Hybrid",
+    "model_Alto",
+    "model_Aqua",
+    "model_Atenza",
+    "model_Canter",
+    "model_Corolla Axio",
+    "model_Corolla Fielder",
+    "model_Crown Hybrid",
+    "model_Cx 5",
+    "model_Cx 8",
+    "model_Dayz",
+    "model_Dayz Roox",
+    "model_Demio",
+    "model_Fit",
+    "model_Fit Hybrid",
+    "model_Forester",
+    "model_Fortuner",
+    "model_Freed Hybrid",
+    "model_Glc Class",
+    "model_Harrier",
+    "model_Hiace Van",
+    "model_Hilux",
+    "model_Hustler",
+    "model_Jimny",
+    "model_Land Cruiser",
+    "model_Lapin",
+    "model_Levorg",
+    "model_Mira Es",
+    "model_Move Canbus",
+    "model_N Box",
+    "model_N One",
+    "model_N Wgn",
+    "model_Noah",
+    "model_Note",
+    "model_Nx",
+    "model_Odyssey",
+    "model_Other",
+    "model_Prius",
+    "model_Probox Van",
+    "model_Raize",
+    "model_Range Rover",
+    "model_Ranger",
+    "model_Roomy",
+    "model_Roox",
+    "model_Rx",
+    "model_Serena",
+    "model_Sienta",
+    "model_Spacia",
+    "model_Succeed Van",
+    "model_Taft",
+    "model_Tanto",
+    "model_Touareg",
+    "model_Vellfire",
+    "model_Vezel",
+    "model_Vezel Hybrid",
+    "model_Voxy",
+    "model_Wagon R",
+    "model_X Trail",
+    "model_Yaris",
+    "model_Yaris Cross",
+    "mileage_bucket_0-30k",
+    "mileage_bucket_30-60k",
+    "mileage_bucket_60-100k",
+    "mileage_bucket_100-150k",
+    "mileage_bucket_150-200k",
+    "mileage_bucket_200k-plus",
+    "fuel_Petrol",
+    "fuel_Diesel",
+    "fuel_Hybrid",
+    "fuel_Electric",
+    "fuel_Plug-in Hybrid",
+    "fuel_LPG",
+    "fuel_CNG",
+    "fuel_Unknown",
+    "trans_Automatic",
+    "trans_Manual",
+    "trans_CVT",
+    "trans_Semi-Automatic",
+    "trans_Unknown",
+    "source_sbt_japan",
+    "source_beforward_japan",
+    "source_carfromjapan",
+    "source_jct_japan",
+    "source_Unknown"
+  ],
+  "metrics": {
+    "r2": 0.8868,
+    "mae": 2361.14,
+    "rmse": 3838.83,
+    "mape": 21.86,
+    "cv_r2_mean": 0.8325,
+    "cv_r2_std": 0.0265
+  },
+  "top_features": [
+    {
+      "feature": "model_Range Rover",
+      "importance": 0.2605000138282776
+    },
+    {
+      "feature": "engine_size_cc",
+      "importance": 0.10170000046491623
+    },
+    {
+      "feature": "mileage_km",
+      "importance": 0.042899999767541885
+    },
+    {
+      "feature": "make_Land Rover",
+      "importance": 0.04129999876022339
+    },
+    {
+      "feature": "year",
+      "importance": 0.03310000151395798
+    },
+    {
+      "feature": "car_age",
+      "importance": 0.03240000084042549
+    },
+    {
+      "feature": "model_Hiace Van",
+      "importance": 0.03200000151991844
+    },
+    {
+      "feature": "model_Land Cruiser",
+      "importance": 0.03020000085234642
+    },
+    {
+      "feature": "make_Mercedes-Benz",
+      "importance": 0.02199999988079071
+    },
+    {
+      "feature": "make_Lexus",
+      "importance": 0.020999999716877937
+    },
+    {
+      "feature": "model_Alphard",
+      "importance": 0.016699999570846558
+    },
+    {
+      "feature": "make_Mazda",
+      "importance": 0.0142000000923872
+    },
+    {
+      "feature": "make_Toyota",
+      "importance": 0.014000000432133675
+    },
+    {
+      "feature": "model_Hilux",
+      "importance": 0.013500000350177288
+    },
+    {
+      "feature": "make_Nissan",
+      "importance": 0.012400000356137753
+    },
+    {
+      "feature": "make_Suzuki",
+      "importance": 0.011900000274181366
+    },
+    {
+      "feature": "model_Fortuner",
+      "importance": 0.011800000444054604
+    },
+    {
+      "feature": "make_Ford",
+      "importance": 0.011599999852478504
+    },
+    {
+      "feature": "trans_Manual",
+      "importance": 0.010700000450015068
+    },
+    {
+      "feature": "model_Other",
+      "importance": 0.010099999606609344
+    }
+  ],
+  "price_stats": {
+    "min": 1510.0,
+    "max": 57980.0,
+    "mean": 13336.41,
+    "median": 9425.0
+  }
+}
