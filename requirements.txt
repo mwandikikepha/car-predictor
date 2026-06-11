@@ -20,3 +20,4 @@ alembic
 annotated-doc
 rapidfuzz
 numpyencoder
+jinja2
