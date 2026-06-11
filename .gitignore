@@ -40,4 +40,4 @@ app/scrapers/run_scrapers.py
 .DS_Store
 Thumbs.db
 EOF
-echo ".gitignore updated"
+echo ".gitignore updated".env
